@@ -1,0 +1,173 @@
+#!/bin/bash
+# luma3ds
+
+# Define dependencies
+dep_luma3ds=~/Documents/3ds/luma3ds
+dep_a9lh=~/Documents/3ds/a9lh
+dep_decrypt9wip=~/Documents/3ds/decrypt9wip
+dep_cia=~/Documents/3ds/cia
+dep_locales=~/Documents/3ds/locales
+dep_misc=~/Documents/3ds/misc
+dep_filer=~/Documents/3ds/filer
+
+# Define directories
+dir_src=~/src
+dir_out=$dir_src/out
+dir_build=$dir_src/build
+dir_luma=$dir_out/luma
+dir_system=$dir_luma/system
+dir_payloads=$dir_luma/payloads
+dir_cia=$dir_luma/cia
+dir_cia_apps=$dir_cia/apps
+dir_cia_games=$dir_cia/games
+dir_cia_updates=$dir_cia/updates
+dir_tmp=$dir_system/tmp
+
+# Luma3DS Menu
+echo "";
+echo "**** Luma3DS Menu ****";
+echo "[1] Build CFW";
+echo "[2] Update repository";
+echo -n "Select your choice: ";
+read choice;
+
+case $choice in
+	1)
+	# Clean src directory
+	rm -rf $dir_build $dir_out $dir_src/luma3ds*;
+	mkdir -vp $dir_build $dir_out $dir_luma $dir_system;
+	mkdir -vp $dir_cia $dir_cia_apps $dir_cia_games $dir_cia_updates $dir_tmp; 
+	cp -rR $dep_luma3ds/* $dir_build/;
+	
+	# Luma3DS
+	cd $dir_build/Luma3DS;
+	make clean;
+	sed -i -e 's|"/luma/firmware.bin"|"/luma/system/luma3ds/firmware.bin"|g' $dir_build/Luma3DS/source/firm.c;
+	sed -i -e 's|"/luma/config.bin"|"/luma/system/luma3ds/config.bin"|g' $dir_build/Luma3DS/source/firm.c;
+	sed -i -e 's|"/luma/config.bin"|"/luma/system/luma3ds/config.bin"|g' $dir_build/Luma3DS/injector/source/patcher.c;
+	sed -i -e 's|"/luma/splash.bin"|"/luma/system/luma3ds/splash.bin"|g' $dir_build/Luma3DS/source/draw.c;
+	sed -i -e 's|"/luma/splashbottom.bin"|"/luma/system/luma3ds/splashbottom.bin"|g' $dir_build/Luma3DS/source/draw.c;
+	sed -i -e 's|filepath ?=|filepath ?= luma/system/luma3ds/|g' $dir_build/Luma3DS/CakeBrah/Makefile;
+	sed -i -e 's|filepath ?=|filepath ?= luma/system/luma3ds/|g' $dir_build/Luma3DS/CakeHax/Makefile;
+	make;
+	mv -v $dir_build/Luma3DS/out/luma/* $dir_luma/;
+	mv -v $dir_build/Luma3DS/out/arm9loaderhax.bin $dir_system/boot.bin;
+	mkdir -vp $dir_system/luma3ds;
+	mv -v $dir_build/Luma3DS/out/3ds/Luma3DS/Luma3DS.3dsx $dir_system/luma3ds/luma3ds.3dsx;
+	mv -v $dir_build/Luma3DS/out/3ds/Luma3DS/Luma3DS.smdh $dir_system/luma3ds/luma3ds.smdh;
+	mv -v $dir_build/Luma3DS/out/Luma3DS.dat $dir_system/luma3ds/luma3ds.dat;
+	
+	# arm9loaderhax
+	cd $dir_build/arm9loaderhax;
+	make clean;
+	sed -i -e 's|"arm9loaderhax.bin"|"/luma/system/boot.bin"|g' $dir_build/arm9loaderhax/payload_stage2/source/main.c;
+	make;
+	
+	# SafeA9LHInstaller
+	cd $dir_build/SafeA9LHInstaller;
+	make clean;
+	sed -i -e 's|"a9lh/otp.bin"|"luma/system/safea9lhinstaller/otp.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|"a9lh/secret_sector.bin"|"luma/system/safea9lhinstaller/secret_sector.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|"a9lh/firm0.bin"|"luma/system/safea9lhinstaller/firm0.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|"a9lh/firm1.bin"|"luma/system/safea9lhinstaller/firm1.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|"a9lh/payload_stage1.bin"|"luma/system/safea9lhinstaller/payload_stage1.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|"a9lh/payload_stage2.bin"|"luma/system/safea9lhinstaller/payload_stage2.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|filepath ?=|filepath ?= luma/system/safea9lhinstaller/|g' $dir_build/SafeA9LHInstaller/CakeBrah/Makefile;
+	sed -i -e 's|filepath ?=|filepath ?= luma/system/safea9lhinstaller/|g' $dir_build/SafeA9LHInstaller/CakeHax/Makefile;
+	make;
+	mv -v $dir_build/SafeA9LHInstaller/out/arm9loaderhax.bin $dir_payloads/x_safea9lhinstaller-v$(date +%Y%m%d).bin;
+	mkdir -v $dir_system/safea9lhinstaller;
+	mv -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.3dsx $dir_system/safea9lhinstaller/safea9lhinstaller.3dsx;
+	mv -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.smdh $dir_system/safea9lhinstaller/safea9lhinstaller.smdh;
+	mv -v $dir_build/SafeA9LHInstaller/out/SafeA9LHInstaller.dat $dir_system/safea9lhinstaller/safea9lhinstaller.dat;
+	mv -v $dir_build/arm9loaderhax/out/* $dir_system/safea9lhinstaller/;
+	cp -v $dep_a9lh/* $dir_system/safea9lhinstaller/;
+	
+  	# Decrypt9WIP
+	cd $dir_build/Decrypt9WIP;
+	make clean;
+	sed -i -e 's|"/D9Game"|"/luma/system/d9game"|g' $dir_build/Decrypt9WIP/source/common.h;
+	sed -i -e 's|"/Decrypt9"|"/luma/system/decrypt9"|g' $dir_build/Decrypt9WIP/source/common.h;
+	sed -i -e 's|"Decrypt9.log"|"/luma/system/decrypt9/decrypt9.log"|g' $dir_build/Decrypt9WIP/source/common.h;
+	make;
+	mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_payloads/up_decrypt9-v$(date +%Y%m%d).bin;
+	mkdir -vp $dir_system/d9game $dir_system/decrypt9;
+	cp -v $dep_decrypt9wip/aeskeydb.bin $dir_system/decrypt9/;
+
+	# EmuNAND9
+	cd $dir_build/EmuNAND9;
+	make clean;
+	sed -i -e 's|"/EmuNAND9"|"/luma/system/emunand9"|g' $dir_build/EmuNAND9/source/common.h;
+	make;
+	mv -v $dir_build/EmuNAND9/output/EmuNAND9.bin $dir_payloads/right_emunand9-v$(date +%Y%m%d).bin;
+	mkdir -vp $dir_system/emunand9;
+
+	# GodMode9
+	cd $dir_build/GodMode9;
+	make clean;
+	make;
+	mv -v $dir_build/GodMode9/output/GodMode9.bin $dir_payloads/left_godmode9-v$(date +%Y%m%d).bin;
+
+	# Uncart
+	cd $dir_build/uncart;
+	make clean;
+	sed -i -e 's|char filename_buf\[32\]|char filename_buf\[48\]|g' $dir_build/uncart/source/main.c;
+	sed -i -e 's|"/%.16s.3d%c"|"/luma/system/uncart/%.16s.3d%c"|g' $dir_build/uncart/source/main.c;
+	sed -i -e 's|Writing to file|Dumping to|g' $dir_build/uncart/source/main.c;
+	make;
+	mv -v $dir_build/uncart/arm9loaderhax.bin $dir_payloads/down_uncart-v$(date +%Y%m%d).bin;
+	mkdir -vp $dir_system/uncart;
+  	
+  	# FBI
+	cd $dir_build/FBI;
+	make clean;
+	make;
+	mv -v $dir_build/FBI/output/FBI.cia $dir_cia_apps/fbi-v$(date +%Y%m%d).cia;
+
+	# ftpd
+	cd $dir_build/ftpd;
+	make clean;
+	make;
+	mv -v $dir_build/ftpd/output/ftpd.cia $dir_cia_apps/ftpd-v$(date +%Y%m%d).cia;
+	
+	# Copy depencencies
+	cp -rR $dep_locales $dir_luma/;
+	cp -v $dep_cia/apps/*.cia $dir_cia_apps/;
+	cp -v $dep_misc/boot.3dsx $dir_out;
+	cp -rR $dep_filer $dir_out/;
+	mkdir -vp $dir_tmp/db; touch $dir_tmp/db/title.db $dir_tmp/db/import.db;
+	cp -rR $dep_decrypt9wip/hs-* $dir_tmp/;
+
+	# Cleanup
+	cd ~/src;
+	rm -rf $dir_build; mv -v $dir_out luma3ds-v$(date +%Y%m%d);
+	echo "";
+	echo "Build finished!";
+	;;
+	
+	2)
+    	mkdir -vp $dep_luma3ds; rm -rf $dep_luma3ds; mkdir -vp $dep_luma3ds;
+    	cd $dep_luma3ds;
+    	echo "";
+    	echo "Fetching Homebrew...";
+    	git clone --recursive https://github.com/AuroraWright/Luma3DS.git;
+    	git clone --recursive -b noscreeninit https://github.com/AuroraWright/arm9loaderhax.git
+    	git clone --recursive https://github.com/AuroraWright/SafeA9LHInstaller.git
+    	git clone --recursive https://github.com/d0k3/Decrypt9WIP.git;
+    	git clone --recursive https://github.com/d0k3/EmuNAND9.git;
+    	git clone --recursive https://github.com/d0k3/GodMode9.git;
+    	git clone --recursive https://github.com/AuroraWright/uncart.git
+    	git clone --recursive https://github.com/Steveice10/FBI.git;
+    	git clone --recursive https://github.com/3xkrazy/ftpd.git;
+    	echo "";
+    	echo "Repository updated!";
+    	echo "";
+    	;;
+	
+  	*)
+    	echo "";
+    	echo "You selected an invalid choice!";
+    	exit 1;
+    	;;
+esac
+exit 0;
