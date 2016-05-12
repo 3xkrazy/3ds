@@ -36,7 +36,7 @@ case $choice in
 	# Clean src directory
 	rm -rf $dir_build $dir_out $dir_src/luma3ds*;
 	mkdir -vp $dir_build $dir_out $dir_luma $dir_system;
-	mkdir -vp $dir_cia $dir_cia_apps $dir_cia_games $dir_cia_updates $dir_tmp; 
+	mkdir -vp $dir_cia $dir_cia_apps $dir_cia_games $dir_cia_updates $dir_tmp;
 	cp -rR $dep_luma3ds/* $dir_build/;
 
 	# Luma3DS
