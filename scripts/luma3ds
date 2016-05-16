@@ -53,7 +53,7 @@ case $choice in
 	sed -i -e 's|filepath ?=|filepath ?= luma/system/luma3ds/|g' $dir_build/Luma3DS/CakeHax/Makefile;
 	make;
 	mv -v $dir_build/Luma3DS/out/luma/* $dir_luma/;
-	mv -v $dir_build/Luma3DS/out/arm9loaderhax.bin $dir_out/boot.bin;
+	mv -v $dir_build/Luma3DS/out/arm9loaderhax.bin $dir_payloads/boot.bin;
 	mkdir -vp $dir_system/luma3ds;
 	mv -v $dir_build/Luma3DS/out/3ds/Luma3DS/Luma3DS.3dsx $dir_system/luma3ds/luma3ds.3dsx;
 	mv -v $dir_build/Luma3DS/out/3ds/Luma3DS/Luma3DS.smdh $dir_system/luma3ds/luma3ds.smdh;
@@ -62,7 +62,7 @@ case $choice in
 	# arm9loaderhax
 	cd $dir_build/arm9loaderhax;
 	make clean;
-	sed -i -e 's|"arm9loaderhax.bin"|"boot.bin"|g' $dir_build/arm9loaderhax/payload_stage2/source/main.c;
+	sed -i -e 's|"arm9loaderhax.bin"|"/luma/payloads/boot.bin"|g' $dir_build/arm9loaderhax/payload_stage2/source/main.c;
 	make;
 
 	# SafeA9LHInstaller
