@@ -132,6 +132,7 @@ case $choice in
 	make clean;
 	make;
 	mv -v $dir_build/ftpd/output/ftpd.cia $dir_cia_apps/ftpd-v$(date +%Y%m%d).cia;
+	mv -v $dir_build/ftpd/output/3ds/ftpd $dir_system/;
 	
 	# hblauncher_loader
 	cd $dir_build/hblauncher_loader;
