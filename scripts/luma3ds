@@ -157,7 +157,7 @@ case $choice in
     	git clone --recursive https://github.com/d0k3/Decrypt9WIP.git;
     	git clone --recursive https://github.com/d0k3/EmuNAND9.git;
     	git clone --recursive https://github.com/d0k3/GodMode9.git;
-    	git clone --recursive https://github.com/AuroraWright/uncart.git
+    	git clone --recursive https://github.com/3xkrazy/uncart.git
     	git clone --recursive https://github.com/Steveice10/FBI.git;
     	git clone --recursive https://github.com/3xkrazy/ftpd.git;
     	echo "";
