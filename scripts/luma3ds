@@ -153,8 +153,8 @@ case $choice in
 	cp -v $dep_cia/apps/*.cia $dir_cia_apps/;
 	cp -rR $dep_filer $dir_out/;
 	cp -rR $dep_decrypt9wip/hs-* $dir_tmp/;
-	cp -v $dep_misc/boot.3dsx $dir_tmp;
-	cp -rR $ddep_roms $dir_system/;
+	cp -v $dep_misc/boot.3dsx $dir_out;
+	cp -rR $dep_roms $dir_luma/;
 
 	# Cleanup
 	cd ~/src;
