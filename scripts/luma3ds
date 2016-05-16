@@ -134,7 +134,7 @@ case $choice in
 	# hblauncher_loader
 	cd $dir_build/hblauncher_loader;
 	make clean;
-	sed -i -e 's|"sdmc:/|"sdmc:/luma/system/|g' $dir_build/hblauncher_loader/source/hblauncher_loader.c;
+	sed -i -e 's|"sdmc:/|"sdmc:/luma/system/luma3ds/|g' $dir_build/hblauncher_loader/source/hblauncher_loader.c;
 	make;
 	mv -v $dir_build/hblauncher_loader/hblauncher_loader.cia $dir_cia_apps/hblauncher_loader-v$(date +%Y%m%d).cia;
 
