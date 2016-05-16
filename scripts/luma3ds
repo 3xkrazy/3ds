@@ -130,6 +130,13 @@ case $choice in
 	make clean;
 	make;
 	mv -v $dir_build/ftpd/output/ftpd.cia $dir_cia_apps/ftpd-v$(date +%Y%m%d).cia;
+	
+	# hblauncher_loader
+	cd $dir_build/hblauncher_loader;
+	make clean;
+	sed -i -e 's|"sdmc:/|"sdmc:/luma/system/|g' $dir_build/hblauncher_loader/source/hblauncher_loader.c;
+	make;
+	mv -v cd $dir_build/hblauncher_loader/hblauncher_loader.cia $dir_cia_apps/hblauncher_loader-v$(date +%Y%m%d).cia;
 
 	# Copy depencencies
 	cp -rR $dep_locales $dir_luma/;
@@ -160,6 +167,7 @@ case $choice in
     	git clone --recursive https://github.com/3xkrazy/uncart.git
     	git clone --recursive https://github.com/Steveice10/FBI.git;
     	git clone --recursive https://github.com/3xkrazy/ftpd.git;
+    	git clone --recursive https://github.com/yellows8/hblauncher_loader.git;
     	echo "";
     	echo "Repository updated!";
     	echo "";
