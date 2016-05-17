@@ -1,7 +1,7 @@
 #!/bin/bash
 # nandtool
 
-dir_nand=/home/hle/Documents/3ds/nand
+dir_nand=~/Documents/3ds/nand
 
 echo "Which block device is your 3DS connected to?";
 echo [1] /dev/sdb
@@ -54,7 +54,7 @@ case $y in
 		echo "Nand list:"
 		for entry in "$dir_nand"/*
 		do
-		echo "$entry";
+			echo "$entry";
 		done
 		echo "";
 		echo -n "Enter nand backup name: ";
