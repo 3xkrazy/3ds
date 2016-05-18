@@ -17,13 +17,13 @@ dir_src=~/src
 dir_out=$dir_src/out
 dir_build=$dir_src/build
 dir_3ds=$dir_out/3ds
+dir_cia=$dir_out/cia
 dir_luma=$dir_out/luma
 dir_system=$dir_luma/system
 dir_payloads=$dir_luma/payloads
-dir_cia=$dir_luma/cia
-dir_cia_apps=$dir_cia/apps
-dir_cia_games=$dir_cia/games
-dir_cia_updates=$dir_cia/updates
+dir_apps=$dir_cia/apps
+dir_games=$dir_cia/games
+dir_updates=$dir_cia/updates
 dir_tmp=$dir_system/tmp
 
 # Luma3DS Menu
@@ -39,7 +39,7 @@ case $choice in
 	# Clean src directory
 	rm -rf $dir_build $dir_out $dir_src/luma3ds*;
 	mkdir -vp $dir_build $dir_out $dir_3ds $dir_luma $dir_system;
-	mkdir -vp $dir_cia $dir_cia_apps $dir_cia_games $dir_cia_updates $dir_tmp $dir_out/retroarch;
+	mkdir -vp $dir_cia $dir_apps $dir_games $dir_updates $dir_tmp $dir_out/retroarch;
 	cp -rR $dep_luma3ds/* $dir_build/;
 
 	# Luma3DS
@@ -85,22 +85,22 @@ case $choice in
   	# Decrypt9WIP
 	cd $dir_build/Decrypt9WIP;
 	make clean;
-	sed -i -e 's|"/D9Game"|"/luma/system/d9game"|g' $dir_build/Decrypt9WIP/source/common.h;
-	sed -i -e 's|"/Decrypt9"|"/luma/system/decrypt9"|g' $dir_build/Decrypt9WIP/source/common.h;
-	sed -i -e 's|"Decrypt9.log"|"/luma/system/decrypt9/decrypt9.log"|g' $dir_build/Decrypt9WIP/source/common.h;
+	sed -i -e 's|"/D9Game"|"/d9game"|g' $dir_build/Decrypt9WIP/source/common.h;
+	sed -i -e 's|"/Decrypt9"|"/decrypt9"|g' $dir_build/Decrypt9WIP/source/common.h;
+	sed -i -e 's|"Decrypt9.log"|"/decrypt9/decrypt9.log"|g' $dir_build/Decrypt9WIP/source/common.h;
 	make;
 	mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_payloads/up_decrypt9-v$(date +%Y%m%d).bin;
-	mkdir -vp $dir_system/d9game $dir_system/decrypt9;
-	cp -v $dep_decrypt9wip/aeskeydb.bin $dir_system/decrypt9/;
-	mv -v $dir_build/Decrypt9WIP/resources/d9logo.bin $dir_system/decrypt9/;
+	mkdir -vp $dir_out/d9game $dir_out/decrypt9;
+	cp -v $dep_decrypt9wip/aeskeydb.bin $dir_out/decrypt9/;
+	mv -v $dir_build/Decrypt9WIP/resources/d9logo.bin $dir_out/decrypt9/;
 
 	# EmuNAND9
 	cd $dir_build/EmuNAND9;
 	make clean;
-	sed -i -e 's|"/EmuNAND9"|"/luma/system/emunand9"|g' $dir_build/EmuNAND9/source/common.h;
+	sed -i -e 's|"/EmuNAND9"|"/emunand9"|g' $dir_build/EmuNAND9/source/common.h;
 	make;
 	mv -v $dir_build/EmuNAND9/output/EmuNAND9.bin $dir_payloads/right_emunand9-v$(date +%Y%m%d).bin;
-	mkdir -vp $dir_system/emunand9;
+	mkdir -vp $dir_out/emunand9;
 
 	# GodMode9
 	cd $dir_build/GodMode9;
@@ -111,18 +111,16 @@ case $choice in
 	# Uncart
 	cd $dir_build/uncart;
 	make clean;
-	sed -i -e 's|char filename_buf\[32\]|char filename_buf\[48\]|g' $dir_build/uncart/source/main.c;
-	sed -i -e 's|"/%.16s.3d%c"|"/luma/system/uncart/%.16s.3d%c"|g' $dir_build/uncart/source/main.c;
-	sed -i -e 's|Writing to file|Dumping to|g' $dir_build/uncart/source/main.c;
+	sed -i -e 's|"/%.16s.3d%c"|"/uncart/%.16s.3d%c"|g' $dir_build/uncart/source/main.c;
 	make;
 	mv -v $dir_build/uncart/arm9loaderhax.bin $dir_payloads/down_uncart-v$(date +%Y%m%d).bin;
-	mkdir -vp $dir_system/uncart;
+	mkdir -vp $dir_out/uncart;
 
   	# FBI
 	cd $dir_build/FBI;
 	make clean;
 	make;
-	mv -v $dir_build/FBI/output/FBI.cia $dir_cia_apps/fbi-v$(date +%Y%m%d).cia;
+	mv -v $dir_build/FBI/output/FBI.cia $dir_apps/fbi-v$(date +%Y%m%d).cia;
 
 	# ftpd
 	cd $dir_build/ftpd;
@@ -137,7 +135,7 @@ case $choice in
 	make clean;
 	sed -i -e 's|"sdmc:/|"sdmc:/luma/system/|g' $dir_build/hblauncher_loader/source/hblauncher_loader.c;
 	make;
-	mv -v $dir_build/hblauncher_loader/hblauncher_loader.cia $dir_cia_apps/hblauncher_loader-v$(date +%Y%m%d).cia;
+	mv -v $dir_build/hblauncher_loader/hblauncher_loader.cia $dir_apps/hblauncher_loader-v$(date +%Y%m%d).cia;
 	cp -v $dep_misc/hblauncherloader* $dir_system/;
 	
 	# Setup RetroArch 3dsx
@@ -150,7 +148,7 @@ case $choice in
 
 	# Copy depencencies
 	cp -rR $dep_locales $dir_luma/;
-	cp -v $dep_cia/apps/*.cia $dir_cia_apps/;
+	cp -v $dep_cia/apps/*.cia $dir_apps/;
 	cp -rR $dep_filer $dir_out/;
 	cp -rR $dep_decrypt9wip/hs-* $dir_tmp/;
 	cp -v $dep_misc/boot.3dsx $dir_3ds/h.bin;
