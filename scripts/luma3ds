@@ -16,6 +16,7 @@ dep_latest_retroarch_nightly=http://buildbot.libretro.com/nightly/nintendo/3ds/$
 dir_src=~/src
 dir_out=$dir_src/out
 dir_build=$dir_src/build
+dir_3ds=$dir_out/3ds
 dir_luma=$dir_out/luma
 dir_system=$dir_luma/system
 dir_payloads=$dir_luma/payloads
@@ -37,27 +38,25 @@ case $choice in
 	1)
 	# Clean src directory
 	rm -rf $dir_build $dir_out $dir_src/luma3ds*;
-	mkdir -vp $dir_build $dir_out $dir_luma $dir_system;
-	mkdir -vp $dir_cia $dir_cia_apps $dir_cia_games $dir_cia_updates $dir_tmp;
+	mkdir -vp $dir_build $dir_out $dir_3ds $dir_luma $dir_system;
+	mkdir -vp $dir_cia $dir_cia_apps $dir_cia_games $dir_cia_updates $dir_tmp $dir_out/retroarch;
 	cp -rR $dep_luma3ds/* $dir_build/;
 
 	# Luma3DS
 	cd $dir_build/Luma3DS;
 	make clean;
-	sed -i -e 's|"/luma/firmware.bin"|"/luma/system/luma3ds/firmware.bin"|g' $dir_build/Luma3DS/source/firm.c;
-	sed -i -e 's|"/luma/config.bin"|"/luma/system/luma3ds/config.bin"|g' $dir_build/Luma3DS/source/firm.c;
-	sed -i -e 's|"/luma/config.bin"|"/luma/system/luma3ds/config.bin"|g' $dir_build/Luma3DS/injector/source/patcher.c;
-	sed -i -e 's|"/luma/splash.bin"|"/luma/system/luma3ds/splash.bin"|g' $dir_build/Luma3DS/source/draw.c;
-	sed -i -e 's|"/luma/splashbottom.bin"|"/luma/system/luma3ds/splashbottom.bin"|g' $dir_build/Luma3DS/source/draw.c;
-	sed -i -e 's|filepath ?=|filepath ?= luma/system/luma3ds/|g' $dir_build/Luma3DS/CakeBrah/Makefile;
-	sed -i -e 's|filepath ?=|filepath ?= luma/system/luma3ds/|g' $dir_build/Luma3DS/CakeHax/Makefile;
+	sed -i -e 's|"/luma/firmware.bin"|"/luma/system/firmware.bin"|g' $dir_build/Luma3DS/source/firm.c;
+	sed -i -e 's|"/luma/config.bin"|"/luma/system/config.bin"|g' $dir_build/Luma3DS/source/firm.c;
+	sed -i -e 's|"/luma/config.bin"|"/luma/system/config.bin"|g' $dir_build/Luma3DS/injector/source/patcher.c;
+	sed -i -e 's|"/luma/splash.bin"|"/luma/system/splash.bin"|g' $dir_build/Luma3DS/source/draw.c;
+	sed -i -e 's|"/luma/splashbottom.bin"|"/luma/system/splashbottom.bin"|g' $dir_build/Luma3DS/source/draw.c;
+	sed -i -e 's|filepath ?=|filepath ?= 3ds/Luma3DS/|g' $dir_build/Luma3DS/CakeBrah/Makefile;
+	sed -i -e 's|filepath ?=|filepath ?= 3ds/Luma3DS/|g' $dir_build/Luma3DS/CakeHax/Makefile;
 	make;
 	mv -v $dir_build/Luma3DS/out/luma/* $dir_luma/;
 	mv -v $dir_build/Luma3DS/out/arm9loaderhax.bin $dir_payloads/boot.bin;
-	mkdir -vp $dir_system/luma3ds;
-	mv -v $dir_build/Luma3DS/out/3ds/Luma3DS/Luma3DS.3dsx $dir_system/luma3ds/luma3ds.3dsx;
-	mv -v $dir_build/Luma3DS/out/3ds/Luma3DS/Luma3DS.smdh $dir_system/luma3ds/luma3ds.smdh;
-	mv -v $dir_build/Luma3DS/out/Luma3DS.dat $dir_system/luma3ds/luma3ds.dat;
+	mv -v $dir_build/Luma3DS/out/3ds/Luma3DS $dir_3ds/;
+	mv -v $dir_build/Luma3DS/out/Luma3DS.dat $dir_3ds/Luma3DS/;
 
 	# arm9loaderhax
 	cd $dir_build/arm9loaderhax;
@@ -68,22 +67,20 @@ case $choice in
 	# SafeA9LHInstaller
 	cd $dir_build/SafeA9LHInstaller;
 	make clean;
-	sed -i -e 's|"a9lh/otp.bin"|"luma/system/safea9lhinstaller/otp.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
-	sed -i -e 's|"a9lh/secret_sector.bin"|"luma/system/safea9lhinstaller/secret_sector.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
-	sed -i -e 's|"a9lh/firm0.bin"|"luma/system/safea9lhinstaller/firm0.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
-	sed -i -e 's|"a9lh/firm1.bin"|"luma/system/safea9lhinstaller/firm1.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
-	sed -i -e 's|"a9lh/payload_stage1.bin"|"luma/system/safea9lhinstaller/payload_stage1.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
-	sed -i -e 's|"a9lh/payload_stage2.bin"|"luma/system/safea9lhinstaller/payload_stage2.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
-	sed -i -e 's|filepath ?=|filepath ?= luma/system/safea9lhinstaller/|g' $dir_build/SafeA9LHInstaller/CakeBrah/Makefile;
-	sed -i -e 's|filepath ?=|filepath ?= luma/system/safea9lhinstaller/|g' $dir_build/SafeA9LHInstaller/CakeHax/Makefile;
+	sed -i -e 's|"a9lh/otp.bin"|"3ds/SafeA9LHInstaller/otp.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|"a9lh/secret_sector.bin"|"3ds/SafeA9LHInstaller/secret_sector.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|"a9lh/firm0.bin"|"3ds/SafeA9LHInstaller/firm0.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|"a9lh/firm1.bin"|"3ds/SafeA9LHInstaller/firm1.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|"a9lh/payload_stage1.bin"|"3ds/SafeA9LHInstaller/payload_stage1.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|"a9lh/payload_stage2.bin"|"3ds/SafeA9LHInstaller/payload_stage2.bin"|g' $dir_build/SafeA9LHInstaller/source/installer.c;
+	sed -i -e 's|filepath ?=|filepath ?= 3ds/SafeA9LHInstaller/|g' $dir_build/SafeA9LHInstaller/CakeBrah/Makefile;
+	sed -i -e 's|filepath ?=|filepath ?= 3ds/SafeA9LHInstaller/|g' $dir_build/SafeA9LHInstaller/CakeHax/Makefile;
 	make;
 	mv -v $dir_build/SafeA9LHInstaller/out/arm9loaderhax.bin $dir_payloads/x_safea9lhinstaller-v$(date +%Y%m%d).bin;
-	mkdir -v $dir_system/safea9lhinstaller;
-	mv -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.3dsx $dir_system/safea9lhinstaller/safea9lhinstaller.3dsx;
-	mv -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller/SafeA9LHInstaller.smdh $dir_system/safea9lhinstaller/safea9lhinstaller.smdh;
-	mv -v $dir_build/SafeA9LHInstaller/out/SafeA9LHInstaller.dat $dir_system/safea9lhinstaller/safea9lhinstaller.dat;
-	mv -v $dir_build/arm9loaderhax/out/* $dir_system/safea9lhinstaller/;
-	cp -v $dep_a9lh/* $dir_system/safea9lhinstaller/;
+	mv -v $dir_build/SafeA9LHInstaller/out/3ds/SafeA9LHInstaller $dir_3ds/;
+	mv -v $dir_build/SafeA9LHInstaller/out/SafeA9LHInstaller.dat $dir_3ds/SafeA9LHInstaller/;
+	mv -v $dir_build/arm9loaderhax/out/* $dir_3ds/SafeA9LHInstaller/;
+	cp -v $dep_a9lh/* $dir_3ds/SafeA9LHInstaller/;
 
   	# Decrypt9WIP
 	cd $dir_build/Decrypt9WIP;
@@ -131,31 +128,31 @@ case $choice in
 	cd $dir_build/ftpd;
 	make clean;
 	make;
-	mv -v $dir_build/ftpd/output/ftpd.cia $dir_cia_apps/ftpd-v$(date +%Y%m%d).cia;
-	mv -v $dir_build/ftpd/output/3ds/ftpd $dir_system/;
+	mv -v $dir_build/ftpd/output/3ds/ftpd $dir_3ds/;
 	
 	# hblauncher_loader
 	cd $dir_build/hblauncher_loader;
 	make clean;
-	sed -i -e 's|"sdmc:/|"sdmc:/luma/system/luma3ds/|g' $dir_build/hblauncher_loader/source/hblauncher_loader.c;
+	sed -i -e 's|"sdmc:/|"sdmc:/luma/system/|g' $dir_build/hblauncher_loader/source/hblauncher_loader.c;
 	make;
 	mv -v $dir_build/hblauncher_loader/hblauncher_loader.cia $dir_cia_apps/hblauncher_loader-v$(date +%Y%m%d).cia;
+	cp -v $dep_misc/hblauncherloader* $dir_system/;
 	
 	# Setup RetroArch 3dsx
 	cd $dir_build/Retroarch;
 	p7zip -d $dir_build/Retroarch/*;
-	cp -rRv $dir_build/Retroarch/3ds/catsfc_libretro $dir_system/;
-	cp -rRv $dir_build/Retroarch/3ds/fceumm_libretro $dir_system/;
-	cp -rRv $dir_build/Retroarch/3ds/fb_alpha_cps2_libretro $dir_system/;
-	cp -rRv $dir_build/Retroarch/3ds/fb_alpha_neo_libretro $dir_system/;
+	cp -rRv $dir_build/Retroarch/3ds/catsfc_libretro $dir_3ds/;
+	cp -rRv $dir_build/Retroarch/3ds/fceumm_libretro $dir_3ds/;
+	cp -rRv $dir_build/Retroarch/3ds/fb_alpha_cps2_libretro $dir_3ds/;
+	cp -rRv $dir_build/Retroarch/3ds/fb_alpha_neo_libretro $dir_3ds/;
 
 	# Copy depencencies
 	cp -rR $dep_locales $dir_luma/;
 	cp -v $dep_cia/apps/*.cia $dir_cia_apps/;
 	cp -rR $dep_filer $dir_out/;
 	cp -rR $dep_decrypt9wip/hs-* $dir_tmp/;
-	cp -v $dep_misc/boot.3dsx $dir_out;
-	cp -rR $dep_roms $dir_luma/;
+	cp -v $dep_misc/boot.3dsx $dir_3ds/h.bin;
+	cp -rR $dep_roms $dir_out/retroarch/;
 
 	# Cleanup
 	cd ~/src;
@@ -178,7 +175,7 @@ case $choice in
     	git clone --recursive https://github.com/d0k3/GodMode9.git;
     	git clone --recursive https://github.com/3xkrazy/uncart.git
     	git clone --recursive https://github.com/Steveice10/FBI.git;
-    	git clone --recursive https://github.com/3xkrazy/ftpd.git;
+    	git clone --recursive https://github.com/mtheall/ftpd;
     	git clone --recursive https://github.com/yellows8/hblauncher_loader.git;
     	mkdir -p $dep_luma3ds/Retroarch; cd $dep_luma3ds/Retroarch; wget $dep_latest_retroarch_nightly;
     	echo "";
