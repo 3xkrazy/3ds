@@ -129,8 +129,8 @@ case $choice in
 	make clean;
 	make;
 	mkdir -v $dir_3ds/ftpd;
-	cp -v $dir_build/ftpd/output/3ds/ftpd.3dsx $dir_3ds/ftpd;
-	cp -v $dir_build/ftpd/output/3ds/ftpd.smdh $dir_3ds/ftpd;
+	cp -v $dir_build/ftpd/ftpd.3dsx $dir_3ds/ftpd/;
+	cp -v $dir_build/ftpd/ftpd.smdh $dir_3ds/ftpd/;
 	
 	# hblauncher_loader
 	cd $dir_build/hblauncher_loader;
