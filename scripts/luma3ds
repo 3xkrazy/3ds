@@ -47,11 +47,6 @@ case $choice in
 	# Luma3DS
 	cd $dir_build/Luma3DS;
 	make clean;
-	sed -i -e 's|"/luma/firmware.bin"|"/luma/system/firmware.bin"|g' $dir_build/Luma3DS/source/firm.c;
-	sed -i -e 's|"/luma/config.bin"|"/luma/system/config.bin"|g' $dir_build/Luma3DS/source/firm.c;
-	sed -i -e 's|"/luma/config.bin"|"/luma/system/config.bin"|g' $dir_build/Luma3DS/injector/source/patcher.c;
-	sed -i -e 's|"/luma/splash.bin"|"/luma/system/splash.bin"|g' $dir_build/Luma3DS/source/draw.c;
-	sed -i -e 's|"/luma/splashbottom.bin"|"/luma/system/splashbottom.bin"|g' $dir_build/Luma3DS/source/draw.c;
 	sed -i -e 's|filepath ?=|filepath ?= 3ds/Luma3DS/|g' $dir_build/Luma3DS/CakeBrah/Makefile;
 	sed -i -e 's|filepath ?=|filepath ?= 3ds/Luma3DS/|g' $dir_build/Luma3DS/CakeHax/Makefile;
 	make;
@@ -113,7 +108,7 @@ case $choice in
 	# Uncart
 	cd $dir_build/uncart;
 	make clean;
-	sed -i -e 's|"/%.16s.3d%c"|"/uncart/%.16s.3d%c"|g' $dir_build/uncart/source/main.c;
+	#sed -i -e 's|"/%.16s.3d%c"|"/uncart/%.16s.3d%c"|g' $dir_build/uncart/source/main.c;
 	make;
 	mv -v $dir_build/uncart/arm9loaderhax.bin $dir_payloads/down_uncart-v$(date +%Y%m%d).bin;
 	mkdir -vp $dir_out/uncart;
@@ -151,10 +146,10 @@ case $choice in
 	# hblauncher_loader
 	cd $dir_build/hblauncher_loader;
 	make clean;
-	sed -i -e 's|"sdmc:/|"sdmc:/luma/system/|g' $dir_build/hblauncher_loader/source/hblauncher_loader.c;
+	sed -i -e 's|"sdmc:/|"sdmc:/3ds/|g' $dir_build/hblauncher_loader/source/hblauncher_loader.c;
 	make;
 	mv -v $dir_build/hblauncher_loader/hblauncher_loader.cia $dir_apps/hblauncher_loader-v$(date +%Y%m%d).cia;
-	cp -v $dep_misc/hblauncherloader* $dir_system/;
+	cp -v $dep_misc/hblauncherloader* $dir_3ds/;
 	cp -v $dep_misc/boot.3dsx $dir_3ds/h.bin;
 	
 	# Setup RetroArch 3dsx
@@ -191,7 +186,7 @@ case $choice in
     	git clone --recursive https://github.com/d0k3/Decrypt9WIP.git;
     	git clone --recursive https://github.com/d0k3/EmuNAND9.git;
     	git clone --recursive https://github.com/d0k3/GodMode9.git;
-    	git clone --recursive https://github.com/3xkrazy/uncart.git
+    	git clone --recursive https://github.com/AuroraWright/uncart.git
     	git clone --recursive https://github.com/J-D-K/JKSM.git
     	git clone --recursive https://github.com/Steveice10/FBI.git;
     	git clone --recursive https://github.com/mtheall/ftpd;
