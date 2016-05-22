@@ -133,6 +133,7 @@ case $choice in
 	make clean;
 	mv -v $dir_build/bannertool/output/bannertool $dir_build/FBI/buildtools/3ds/bannertool-linux;
 	make;
+	mv -v $dir_build/FBI/output/3ds/FBI $dir_3ds/;
 	mv -v $dir_build/FBI/output/FBI.cia $dir_apps/fbi-v$(date +%Y%m%d).cia;
 
 	# ftpd
