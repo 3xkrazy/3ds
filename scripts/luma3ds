@@ -131,7 +131,7 @@ case $choice in
 	mkdir -v $dir_3ds/JKSM;
 	cp -v $dir_build/JKSM/JKSM.3dsx $dir_3ds/JKSM;
 	cp -v $dir_build/JKSM/JKSM.smdh $dir_3ds/JKSM;
-	cp -v $dir_build/JKSM/JKSM.cia $dir_apps/;
+	cp -v $dir_build/JKSM/JKSM.cia $dir_apps/jksm-v$(date +%Y%m%d).cia;
 	cp -v $dep_jksv/* $dir_jksv/;
 
   	# FBI
