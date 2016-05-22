@@ -20,13 +20,11 @@ dir_build=$dir_src/build
 dir_3ds=$dir_out/3ds
 dir_cia=$dir_out/cia
 dir_luma=$dir_out/luma
-dir_system=$dir_luma/system
 dir_payloads=$dir_luma/payloads
 dir_jksv=$dir_out/JKSV
 dir_apps=$dir_cia/apps
 dir_games=$dir_cia/games
 dir_updates=$dir_cia/updates
-dir_tmp=$dir_system/tmp
 
 # Luma3DS Menu
 echo "";
@@ -40,8 +38,8 @@ case $choice in
 	1)
 	# Clean src directory
 	rm -rf $dir_build $dir_out $dir_src/luma3ds*;
-	mkdir -vp $dir_build $dir_out $dir_3ds $dir_luma $dir_system;
-	mkdir -vp $dir_jksv $dir_cia $dir_apps $dir_games $dir_updates $dir_tmp $dir_out/retroarch;
+	mkdir -vp $dir_build $dir_out $dir_3ds $dir_luma;
+	mkdir -vp $dir_jksv $dir_cia $dir_apps $dir_games $dir_updates $dir_out/retroarch;
 	cp -rR $dep_luma3ds/* $dir_build/;
 	
 	# Copy depencencies
@@ -168,7 +166,7 @@ case $choice in
 	cd ~/src;
 	rm -rf $dir_build; mv -v $dir_out luma3ds-v$(date +%Y%m%d);
 	echo "";
-	echo "Build finished! Copy the luma folder to the root of your SD card. Remove/rename the otp.bin* file located in /luma/system/safea9lhinstaller/ according to the 3DS model you have.";
+	echo "Build finished! Copy the luma folder to the root of your SD card. Remove/rename the otp.bin* file located in /3ds/safea9lhinstaller/ according to the 3DS model you have.";
 	;;
 
 	2)
