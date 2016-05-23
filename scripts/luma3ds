@@ -39,7 +39,7 @@ case $choice in
 	# Clean src directory
 	rm -rf $dir_build $dir_out $dir_src/luma3ds*;
 	mkdir -vp $dir_build $dir_out $dir_3ds $dir_luma;
-	mkdir -vp $dir_jksv $dir_cia $dir_apps $dir_games $dir_updates $dir_out/retroarch;
+	mkdir -vp $dir_jksv $dir_cia $dir_apps $dir_games $dir_updates;
 	cp -rR $dep_luma3ds/* $dir_build/;
 	
 	# Copy depencencies
@@ -84,20 +84,23 @@ case $choice in
   	# Decrypt9WIP
 	cd $dir_build/Decrypt9WIP;
 	make clean;
-	sed -i -e 's|"Decrypt9.log"|"/Decrypt9/Decrypt9.log"|g' $dir_build/Decrypt9WIP/source/common.h;
+	sed -i -e 's|"/D9Game"|"/d9game"|g' $dir_build/Decrypt9WIP/source/common.h;
+	sed -i -e 's|"/Decrypt9"|"/decrypt9"|g' $dir_build/Decrypt9WIP/source/common.h;
+	sed -i -e 's|"Decrypt9.log"|"/decrypt9/Decrypt9.log"|g' $dir_build/Decrypt9WIP/source/common.h;
 	make;
 	mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_payloads/up_decrypt9-v$(date +%Y%m%d).bin;
-	mkdir -vp $dir_out/D9Game $dir_out/Decrypt9;
-	cp -v $dep_decrypt9wip/aeskeydb.bin $dir_out/Decrypt9/;
-	cp -rR $dep_decrypt9wip/hs-* $dir_out/Decrypt9/;
-	mv -v $dir_build/Decrypt9WIP/resources/d9logo.bin $dir_out/Decrypt9/;
+	mkdir -vp $dir_out/d9game $dir_out/decrypt9;
+	mv -v $dir_build/Decrypt9WIP/resources/d9logo.bin $dir_out/decrypt9/;
+	cp -v $dep_decrypt9wip/aeskeydb.bin $dir_out/decrypt9/;
+	cp -rR $dep_decrypt9wip/hs-* $dir_out/decrypt9/;
 
 	# EmuNAND9
 	cd $dir_build/EmuNAND9;
 	make clean;
+	sed -i -e 's|"/EmuNAND9"|"/emunand9"|g' $dir_build/EmuNAND9/source/common.h;
 	make;
 	mv -v $dir_build/EmuNAND9/output/EmuNAND9.bin $dir_payloads/right_emunand9-v$(date +%Y%m%d).bin;
-	mkdir -vp $dir_out/EmuNAND9;
+	mkdir -vp $dir_out/emunand9;
 
 	# GodMode9
 	cd $dir_build/GodMode9;
@@ -108,10 +111,10 @@ case $choice in
 	# Uncart
 	cd $dir_build/uncart;
 	make clean;
-	sed -i -e 's|"/%.16s.3d%c"|"/Uncart/%.16s.3d%c"|g' $dir_build/uncart/source/main.c;
+	sed -i -e 's|"/%.16s.3d%c"|"/uncart/%.16s.3d%c"|g' $dir_build/uncart/source/main.c;
 	make;
 	mv -v $dir_build/uncart/arm9loaderhax.bin $dir_payloads/down_uncart-v$(date +%Y%m%d).bin;
-	mkdir -vp $dir_out/Uncart;
+	mkdir -vp $dir_out/uncart;
 
 	# JKSM
 	cd $dir_build/JKSM;
@@ -156,6 +159,7 @@ case $choice in
 	cp -rR $dir_build/Retroarch/3ds/fceumm_libretro $dir_3ds/;
 	cp -rR $dir_build/Retroarch/3ds/fb_alpha_cps2_libretro $dir_3ds/;
 	cp -rR $dir_build/Retroarch/3ds/fb_alpha_neo_libretro $dir_3ds/;
+	mkdir -vp $dir_out/retroarch;
 	cp -rR $dep_roms $dir_out/retroarch/;
 
 	# Cleanup
