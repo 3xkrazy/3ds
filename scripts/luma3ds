@@ -18,10 +18,10 @@ dir_src=~/src
 dir_out=$dir_src/out
 dir_build=$dir_src/build
 dir_3ds=$dir_out/3ds
-dir_cia=$dir_out/cia
 dir_luma=$dir_out/luma
 dir_payloads=$dir_luma/payloads
-dir_jksv=$dir_out/JKSV
+dir_jksv=$dir_out/jksv
+dir_cia=$dir_out/cia
 dir_apps=$dir_cia/apps
 dir_games=$dir_cia/games
 dir_updates=$dir_cia/updates
@@ -86,7 +86,7 @@ case $choice in
 	make clean;
 	sed -i -e 's|"/D9Game"|"/d9game"|g' $dir_build/Decrypt9WIP/source/common.h;
 	sed -i -e 's|"/Decrypt9"|"/decrypt9"|g' $dir_build/Decrypt9WIP/source/common.h;
-	sed -i -e 's|"Decrypt9.log"|"/decrypt9/Decrypt9.log"|g' $dir_build/Decrypt9WIP/source/common.h;
+	sed -i -e 's|"Decrypt9.log"|"/decrypt9/decrypt9.log"|g' $dir_build/Decrypt9WIP/source/common.h;
 	make;
 	mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_payloads/up_decrypt9-v$(date +%Y%m%d).bin;
 	mkdir -vp $dir_out/d9game $dir_out/decrypt9;
@@ -119,6 +119,12 @@ case $choice in
 	# JKSM
 	cd $dir_build/JKSM;
 	make clean;
+-	sed -i -e 's|/JKSV|/jksv|g' $dir_build/JKSM/source/log.cpp;
+ -	sed -i -e 's|/JKSV|/jksv|g' $dir_build/JKSM/source/sys.cpp;
+ -	sed -i -e 's|/JKSV|/jksv|g' $dir_build/JKSM/source/titles.cpp;
+ -	sed -i -e 's|/JKSV|/jksv|g' $dir_build/JKSM/source/util.cpp;
+ -	sed -i -e 's|/JKSV|/jksv|g' $dir_build/JKSM/source/main.cpp;
+ -	sed -i -e 's|/JKSV|/jksv|g' $dir_build/JKSM/source/backup.cpp;
 	make cia;
 	cp -v $dir_build/JKSM/JKSM.cia $dir_apps/jksm-v$(date +%Y%m%d).cia;
 	cp -v $dep_jksv/* $dir_jksv/;
