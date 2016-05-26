@@ -56,6 +56,7 @@ case $choice in
 	sed -i -e 's|filepath ?=|filepath ?= 3ds/Luma3DS/|g' $dir_build/Luma3DS/CakeBrah/Makefile;
 	sed -i -e 's|filepath ?=|filepath ?= 3ds/Luma3DS/|g' $dir_build/Luma3DS/CakeHax/Makefile;
 	make;
+	mv -v $dir_build/Luma3DS/out/luma/* $dir_out/luma/;
 	mv -v $dir_build/Luma3DS/out/arm9loaderhax.bin $dir_payloads/boot.bin;
 	mv -v $dir_build/Luma3DS/out/3ds/Luma3DS $dir_3ds/;
 	mv -v $dir_build/Luma3DS/out/Luma3DS.dat $dir_3ds/Luma3DS/;
