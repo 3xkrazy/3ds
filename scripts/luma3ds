@@ -19,7 +19,7 @@ dir_out=$dir_src/out
 dir_build=$dir_src/build
 dir_3ds=$dir_out/3ds
 dir_luma=$dir_out/luma
-dir_payloads=$dir_out/payloads
+dir_payloads=$dir_luma/payloads
 dir_d9game=$dir_out/d9game
 dir_decrypt9=$dir_out/decrypt9
 dir_emunand9=$dir_out/emunand9
@@ -42,7 +42,7 @@ case $choice in
 	1)
 	# Clean src directory
 	rm -rf $dir_build $dir_out $dir_src/luma3ds*;
-	mkdir -vp $dir_build $dir_out $dir_3ds $dir_luma $dir_payloads $dir_d9game $dir_decrypt9 $dir_emunand9;
+	mkdir -vp $dir_build $dir_out $dir_3ds $dir_luma $dir_d9game $dir_decrypt9 $dir_emunand9;
 	mkdir -vp $dir_uncart $dir_jksv $dir_cia $dir_apps $dir_games $dir_updates;
 	cp -rR $dep_luma3ds/* $dir_build/;
 
@@ -53,7 +53,6 @@ case $choice in
 	# Luma3DS
 	cd $dir_build/Luma3DS;
 	make clean;
-	sed -i -e 's|"/luma/payloads"|"/payloads"|g' $dir_build/Luma3DS/source/fs.c;
 	sed -i -e 's|filepath ?=|filepath ?= 3ds/Luma3DS/|g' $dir_build/Luma3DS/CakeBrah/Makefile;
 	sed -i -e 's|filepath ?=|filepath ?= 3ds/Luma3DS/|g' $dir_build/Luma3DS/CakeHax/Makefile;
 	make;
@@ -64,7 +63,7 @@ case $choice in
 
 	# arm9loaderhax
 	cd $dir_build/arm9loaderhax;
-	sed -i -e 's|"arm9loaderhax.bin"|"/payloads/boot.bin"|g' $dir_build/arm9loaderhax/payload_stage2/source/main.c
+	sed -i -e 's|"arm9loaderhax.bin"|"/luma/payloads/boot.bin"|g' $dir_build/arm9loaderhax/payload_stage2/source/main.c
 	make clean;
 	make;
 
