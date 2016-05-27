@@ -3,8 +3,8 @@
 
 # Define directories
 dir_retroarch=~/Documents/3ds/retroarch
-dir_savefiles=$dir_retroarch/savefiles
-dir_savestates=$dir_savestates
+dir_savefiles=$dir_retroarch/cores/savefiles
+dir_savestates=$dir_retroarch/cores/savestates
 
 # Menu
 echo "***** Retroarch Filer Menu *****";
