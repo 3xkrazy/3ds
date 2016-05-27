@@ -30,14 +30,14 @@ case $choice in
   cp -rRv filer/* $dir_filer/;
   echo "Done!";
   ;;
-  
+
   3)
   echo "";
   rm -rf $dir_jksv; mkdir -vp $dir_jksv;
   cp -rRv jksv/* $dir_jksv/;
   echo "Done!";
   ;;
-  
+
   4)
   echo "";
   rm -rf $dir_retroarch; mkdir -vp $dir_savefiles $dir_savestates;
