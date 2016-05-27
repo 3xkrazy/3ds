@@ -10,6 +10,9 @@ dep_locales=~/Documents/3ds/locales
 dep_misc=~/Documents/3ds/misc
 dep_filer=~/Documents/3ds/filer
 dep_jksv=~/Documents/3ds/jksv
+dep_retroarch=~/Documents/3ds/retroarch
+dep_savefiles=$dep_retroarch/savefiles
+dep_savestates=$dep_retroarch/savestates
 dep_roms=~/Documents/3ds/roms
 dep_latest_retroarch_nightly=http://buildbot.libretro.com/nightly/nintendo/3ds/$(date +%Y-%m-%d)_RetroArch_3dsx.7z
 
@@ -24,7 +27,9 @@ dir_d9game=$dir_out/d9game
 dir_decrypt9=$dir_out/decrypt9
 dir_emunand9=$dir_out/emunand9
 dir_uncart=$dir_out/uncart
-dir_jksv=$dir_out/jksv
+dir_retroarch=$dir_out/retroarch
+dir_savefiles=$dir_retroarch/savefiles
+dir_savestates=$dir_retroarch/savestates
 dir_cia=$dir_out/cia
 dir_apps=$dir_cia/apps
 dir_games=$dir_cia/games
@@ -43,12 +48,21 @@ case $choice in
 	# Clean src directory
 	rm -rf $dir_build $dir_out $dir_src/luma3ds*;
 	mkdir -vp $dir_build $dir_out $dir_3ds $dir_luma $dir_d9game $dir_decrypt9 $dir_emunand9;
-	mkdir -vp $dir_uncart $dir_jksv $dir_cia $dir_apps $dir_games $dir_updates;
+	mkdir -vp $dir_uncart $dir_cia $dir_apps $dir_games $dir_updates;
+	mkdir -vp $dir_retroarch $dir_savefiles $dir_savestates;
 	cp -rR $dep_luma3ds/* $dir_build/;
 
 	# Copy depencencies
-	cp -v $dep_cia/apps/*.cia $dir_apps/;
+	cp -rR $dep_decrypt9wip/aeskeydb.bin $dir_decrypt9/;
+	cp -rR $dep_decrypt9wip/hs-* $dir_decrypt9/;
+	cp -rR $dep_cia/apps/*.cia $dir_apps/;
 	cp -rR $dep_filer $dir_out/;
+	cp -rR $dep_jksv $dir_out/;
+	cp -rR $dep_savefiles/* $dir_savefiles/;
+	cp -rR $dep_savestates/* $dir_savestates/;
+	cp -rR $dep_misc/hblauncherloader* $dir_3ds/;
+	cp -rR $dep_misc/boot.3dsx $dir_3ds/h.bin;
+	cp -rR $dep_roms $dir_out/retroarch/;
 
 	# Luma3DS
 	cd $dir_build/Luma3DS;
@@ -95,8 +109,6 @@ case $choice in
 	make;
 	mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_payloads/up_decrypt9-v$(date +%Y%m%d).bin;
 	mv -v $dir_build/Decrypt9WIP/resources/d9logo.bin $dir_decrypt9/;
-	cp -v $dep_decrypt9wip/aeskeydb.bin $dir_decrypt9/;
-	cp -rR $dep_decrypt9wip/hs-* $dir_decrypt9/;
 
 	# EmuNAND9
 	cd $dir_build/EmuNAND9;
@@ -128,8 +140,7 @@ case $choice in
 	sed -i -e 's|/JKSV|/jksv|g' $dir_build/JKSM/source/main.cpp;
 	sed -i -e 's|/JKSV|/jksv|g' $dir_build/JKSM/source/backup.cpp;
 	make cia;
-	cp -v $dir_build/JKSM/JKSM.cia $dir_apps/jksm-v$(date +%Y%m%d).cia;
-	cp -v $dep_jksv/* $dir_jksv/;
+	mv -v $dir_build/JKSM/JKSM.cia $dir_apps/jksm-v$(date +%Y%m%d).cia;
 
 	# bannertool
 	cd $dir_build/bannertool;
@@ -148,8 +159,8 @@ case $choice in
 	make clean;
 	make;
 	mkdir -v $dir_3ds/ftpd;
-	cp -v $dir_build/ftpd/ftpd.3dsx $dir_3ds/ftpd/;
-	cp -v $dir_build/ftpd/ftpd.smdh $dir_3ds/ftpd/;
+	mv -v $dir_build/ftpd/ftpd.3dsx $dir_3ds/ftpd/;
+	mv -v $dir_build/ftpd/ftpd.smdh $dir_3ds/ftpd/;
 
 	# hblauncher_loader
 	cd $dir_build/hblauncher_loader;
@@ -157,18 +168,16 @@ case $choice in
 	sed -i -e 's|"sdmc:/|"sdmc:/3ds/|g' $dir_build/hblauncher_loader/source/hblauncher_loader.c;
 	make;
 	mv -v $dir_build/hblauncher_loader/hblauncher_loader.cia $dir_apps/hblauncher_loader-v$(date +%Y%m%d).cia;
-	cp -v $dep_misc/hblauncherloader* $dir_3ds/;
-	cp -v $dep_misc/boot.3dsx $dir_3ds/h.bin;
 
 	# Setup RetroArch 3dsx
 	cd $dir_build/Retroarch;
 	p7zip -d $dir_build/Retroarch/*;
-	cp -rR $dir_build/Retroarch/3ds/catsfc_libretro $dir_3ds/;
-	cp -rR $dir_build/Retroarch/3ds/fceumm_libretro $dir_3ds/;
-	cp -rR $dir_build/Retroarch/3ds/fb_alpha_cps2_libretro $dir_3ds/;
-	cp -rR $dir_build/Retroarch/3ds/fb_alpha_neo_libretro $dir_3ds/;
-	mkdir -vp $dir_out/retroarch;
-	cp -rR $dep_roms $dir_out/retroarch/;
+	mv -rR $dir_build/Retroarch/3ds/catsfc_libretro $dir_3ds/;
+	mv -rR $dir_build/Retroarch/3ds/fceumm_libretro $dir_3ds/;
+	mv -rR $dir_build/Retroarch/3ds/fb_alpha_cps2_libretro $dir_3ds/;
+	mv -rR $dir_build/Retroarch/3ds/fb_alpha_neo_libretro $dir_3ds/;
+	mv -rR $dir_build/Retroarch/3ds/pocketsnes_libretro $dir_3ds/;
+	
 
 	# Cleanup
 	cd ~/src;
