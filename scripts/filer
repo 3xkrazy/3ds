@@ -7,7 +7,7 @@ dir_filer=~/Documents/3ds/filer
 # Menu
 echo "";
 echo "[1] Exit";
-echo "[2] Backup filer folder;
+echo "[2] Backup filer folder";
 echo -n "Select your choice: ";
 read choice;
 
