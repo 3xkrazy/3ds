@@ -3,11 +3,13 @@
 
 # Define directories
 dir_filer=~/Documents/3ds/filer
+dir_jksv=~/Documents/3ds/jksv
 
 # Menu
-echo "****** Filer Menu ******";
+echo "*** Filer / JKSM Menu ***";
 echo "[1] Exit";
 echo "[2] Backup filer folder";
+echo "[3] Backup jksv folder";
 echo -n "Select your choice: ";
 read choice;
 
@@ -21,7 +23,14 @@ case $choice in
   2)
   echo "";
   rm -rf $dir_filer; mkdir -vp $dir_filer;
-  cp -rRv filer $dir_filer;
+  cp -rRv filer/* $dir_filer/;
+  echo "Done!";
+  ;;
+  
+  3)
+  echo "";
+  rm -rf $dir_jksv; mkdir -vp $dir_jksv;
+  cp -rRv jksv/* $dir_jksv/;
   echo "Done!";
   ;;
 
