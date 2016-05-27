@@ -20,7 +20,7 @@ case $choice in
 
   2)
   echo "";
-  rm $dir_filer; mkdir -v $dir_filer;
+  rm -rf $dir_filer; mkdir -vp $dir_filer;
   cp -rRv filer $dir_filer;
   echo "Done!";
   ;;
