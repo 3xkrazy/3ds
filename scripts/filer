@@ -6,8 +6,7 @@ dir_filer=~/Documents/3ds/filer
 
 # Menu
 echo "";
-echo "";
-echo "[1] Exit;
+echo "[1] Exit";
 echo "[2] Backup filer folder;
 echo -n "Select your choice: ";
 read choice;
@@ -25,7 +24,7 @@ case choice in
   cp -rRv filer $dir_filer;
   echo "Done!";
   ;;
-  
+
   *)
   echo "";
   echo "Invalid choice!";
