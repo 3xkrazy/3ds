@@ -1,0 +1,37 @@
+#!/bin/bash
+#filer
+
+# Define directories
+dir_filer=~/Documents/3ds/filer
+
+# Menu
+echo "";
+echo "";
+echo "[1] Exit;
+echo "[2] Backup filer folder;
+echo -n "Select your choice: ";
+read choice;
+
+case choice in
+  1)
+  echo "";
+  echo "Exiting...";
+  exit 0;
+  ;;
+
+  2)
+  echo "";
+  rm $dir_filer; mkdir -v $dir_filer;
+  cp -rRv filer $dir_filer;
+  echo "Done!";
+  ;;
+  
+  *)
+  echo "";
+  echo "Invalid choice!";
+  exit 1;
+  ;;
+
+esac
+exit 0;
+  
