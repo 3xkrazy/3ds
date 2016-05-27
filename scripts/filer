@@ -11,7 +11,7 @@ echo "[2] Backup filer folder";
 echo -n "Select your choice: ";
 read choice;
 
-case choice in
+case $choice in
   1)
   echo "";
   echo "Exiting...";
