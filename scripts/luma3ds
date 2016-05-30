@@ -162,7 +162,7 @@ case $choice in
 	sed -i -e 's|/CIAngel|/ciangel|g' $dir_build/CIAngel/source/main.cpp;
 	sed -i -e 's|/CIAngel|/ciangel|g' $dir_build/CIAngel/source/utils.cpp;
 	make;
-	cp -v $dir_build/CIAngel/output/CIAngel.cia $dir_apps/;
+	cp -v $dir_build/CIAngel/output/CIAngel.cia $dir_apps/ciangel-v$(date +%Y%m%d).cia;
 	cp -rR $dir_build/CIAngel/output/3ds/CIAngel $dir_3ds/;
 
   	# FBI
