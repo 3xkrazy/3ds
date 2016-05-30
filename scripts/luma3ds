@@ -156,7 +156,7 @@ case $choice in
   	# FBI
 	cd $dir_build/FBI;
 	make clean;
-	mv -v $dir_build/bannertool/output/bannertool $dir_build/FBI/buildtools/3ds/bannertool-linux;
+	mv -v $dir_build/bannertool/output/bannertool $dir_build/FBI/buildtools/3ds/bannertool-linux32;
 	make;
 	mv -v $dir_build/FBI/output/FBI.cia $dir_apps/fbi-v$(date +%Y%m%d).cia;
 
