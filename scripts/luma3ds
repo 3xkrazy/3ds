@@ -34,7 +34,7 @@ dir_d9game=$dir_out/d9game
 dir_decrypt9=$dir_out/decrypt9
 dir_emunand9=$dir_out/emunand9
 dir_uncart=$dir_out/uncart
-dir_retroarch=$dir_out/retroarch
+dir_retroarch=$dir_out/retroarch/cores
 dir_cia=$dir_out/cia
 dir_apps=$dir_cia/apps
 dir_games=$dir_cia/games
@@ -65,11 +65,11 @@ case $choice in
 	cp -rR $dep_cia/apps/*.cia $dir_apps/; cp -rR $dir_build/freeshop/*.cia $dir_apps/;
 	cp -rR $dep_filer $dir_out/;
 	cp -rR $dep_jksv $dir_out/;
-	cp -rR $dep_savefiles $dir_retroarch/cores/;
-	cp -rR $dep_savestates $dir_retroarch/cores/;
+	cp -rR $dep_savefiles $dir_retroarch/;
+	cp -rR $dep_savestates $dir_retroarch/;
 	cp -rR $dep_misc/hblauncherloader* $dir_3ds/;
 	cp -rR $dep_misc/boot.3dsx $dir_3ds/h.bin;
-	cp -rR $dep_roms $dir_out/retroarch/;
+	cp -rR $dep_roms $dir_out/;
 	cp -rR $dir_build/freeshop/*.bin $dir_freeshop/;
 
 	# Luma3DS
@@ -154,7 +154,7 @@ case $choice in
 	cd $dir_build/bannertool;
 	make clean;
 	make;
-	
+
 	# CIAngel
 	cd $dir_build/CIAngel;
 	make clean;
@@ -163,7 +163,6 @@ case $choice in
 	sed -i -e 's|/CIAngel|/ciangel|g' $dir_build/CIAngel/source/utils.cpp;
 	make;
 	cp -v $dir_build/CIAngel/output/CIAngel.cia $dir_apps/ciangel-v$(date +%Y%m%d).cia;
-	cp -rR $dir_build/CIAngel/output/3ds/CIAngel $dir_3ds/;
 
   	# FBI
 	cd $dir_build/FBI;
@@ -231,7 +230,7 @@ case $choice in
     	echo "";
     	echo "Source updated!";
     	;;
-    	
+
     	3)
     	# Update freeShop
     	rm -rf $dep_luma3ds/freeshop; mkdir -vp $dep_luma3ds/freeshop; cd $dep_luma3ds/freeshop;
