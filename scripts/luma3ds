@@ -1,7 +1,7 @@
 #!/bin/bash
 # luma3ds
 
-# Define dependencies
+# Define local dependencies
 dep_luma3ds=~/Documents/3ds/luma3ds
 dep_a9lh=~/Documents/3ds/a9lh
 dep_decrypt9wip=~/Documents/3ds/decrypt9wip
@@ -14,7 +14,13 @@ dep_retroarch=~/Documents/3ds/retroarch
 dep_savefiles=$dep_retroarch/savefiles
 dep_savestates=$dep_retroarch/savestates
 dep_roms=~/Documents/3ds/roms
-dep_latest_retroarch_nightly=http://buildbot.libretro.com/nightly/nintendo/3ds/$(date +%Y-%m-%d)_RetroArch_3dsx.7z
+dep_freeshop=~/Downloads/3ds/freeshop
+
+# Define url dependencies
+url_latest_retroarch_nightly=http://buildbot.libretro.com/nightly/nintendo/3ds/$(date +%Y-%m-%d)_RetroArch_3dsx.7z
+url_freeshop=https://github.com/Cruel/freeShop/releases/download/1.0/freeShop-1.0.cia
+url_enctitlekeys=https://3ds.titlekeys.com/downloadenc
+url_dectitlekeys=https://3ds.titlekeys.com/download
 
 # Define directories
 dir_src=~/src
@@ -32,6 +38,7 @@ dir_cia=$dir_out/cia
 dir_apps=$dir_cia/apps
 dir_games=$dir_cia/games
 dir_updates=$dir_cia/updates
+dir_freeshop=$dir_out/freeShop
 
 # Luma3DS Menu
 echo "";
@@ -46,13 +53,13 @@ case $choice in
 	# Clean src directory
 	rm -rf $dir_build $dir_out $dir_src/luma3ds*;
 	mkdir -vp $dir_build $dir_out $dir_3ds $dir_luma $dir_d9game $dir_decrypt9 $dir_emunand9;
-	mkdir -vp $dir_uncart $dir_cia $dir_apps $dir_games $dir_updates $dir_retroarch;
+	mkdir -vp $dir_uncart $dir_cia $dir_apps $dir_games $dir_updates $dir_freeshop $dir_retroarch;
 
 	# Copy depencencies
 	cp -rR $dep_luma3ds/* $dir_build/;
 	cp -rR $dep_decrypt9wip/aeskeydb.bin $dir_decrypt9/;
 	cp -rR $dep_decrypt9wip/hs-* $dir_decrypt9/;
-	cp -rR $dep_cia/apps/*.cia $dir_apps/;
+	cp -rR $dep_cia/apps/*.cia $dir_apps/; cp -rR $dep_freeshop/*.cia $dir_apps/;
 	cp -rR $dep_filer $dir_out/;
 	cp -rR $dep_jksv $dir_out/;
 	cp -rR $dep_savefiles $dir_retroarch/cores/;
@@ -201,7 +208,8 @@ case $choice in
     	git clone --recursive https://github.com/Steveice10/FBI.git;
     	git clone --recursive https://github.com/mtheall/ftpd;
     	git clone --recursive https://github.com/yellows8/hblauncher_loader.git;
-    	mkdir -p $dep_luma3ds/Retroarch; cd $dep_luma3ds/Retroarch; wget $dep_latest_retroarch_nightly;
+    	mkdir -p $dep_luma3ds/Retroarch; cd $dep_luma3ds/Retroarch; wget $url_latest_retroarch_nightly;
+    	mkdir -p $dep_freeshop; cd $dep_freeshop; wget $url_freeshop; wget $url_enctitlekeys; wget $url_dectitlekeys;
     	echo "";
     	echo "Source updated!";
     	;;
