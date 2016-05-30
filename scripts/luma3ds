@@ -67,6 +67,7 @@ case $choice in
 	cp -rR $dep_misc/hblauncherloader* $dir_3ds/;
 	cp -rR $dep_misc/boot.3dsx $dir_3ds/h.bin;
 	cp -rR $dep_roms $dir_out/retroarch/;
+	cp -rR $dep_freeshop/*.bin $dir_freeshop/;
 
 	# Luma3DS
 	cd $dir_build/Luma3DS;
