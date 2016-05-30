@@ -14,7 +14,7 @@ dep_retroarch=~/Documents/3ds/retroarch
 dep_savefiles=$dep_retroarch/savefiles
 dep_savestates=$dep_retroarch/savestates
 dep_roms=~/Documents/3ds/roms
-dep_freeshop=~/Downloads/3ds/freeshop
+dep_freeshop=~/Documents/3ds/freeshop
 
 # Define url dependencies
 url_latest_retroarch_nightly=http://buildbot.libretro.com/nightly/nintendo/3ds/$(date +%Y-%m-%d)_RetroArch_3dsx.7z
@@ -177,13 +177,12 @@ case $choice in
 	# Setup RetroArch 3dsx
 	cd $dir_build/Retroarch;
 	p7zip -d $dir_build/Retroarch/*;
-	mv -rR $dir_build/Retroarch/3ds/catsfc_libretro $dir_3ds/;
-	mv -rR $dir_build/Retroarch/3ds/fceumm_libretro $dir_3ds/;
-	mv -rR $dir_build/Retroarch/3ds/fb_alpha_cps2_libretro $dir_3ds/;
-	mv -rR $dir_build/Retroarch/3ds/fb_alpha_neo_libretro $dir_3ds/;
-	mv -rR $dir_build/Retroarch/3ds/pocketsnes_libretro $dir_3ds/;
+	mv -v $dir_build/Retroarch/3ds/catsfc_libretro $dir_3ds/;
+	mv -v $dir_build/Retroarch/3ds/fceumm_libretro $dir_3ds/;
+	mv -v $dir_build/Retroarch/3ds/fb_alpha_cps2_libretro $dir_3ds/;
+	mv -v $dir_build/Retroarch/3ds/fb_alpha_neo_libretro $dir_3ds/;
+	mv -v $dir_build/Retroarch/3ds/pocketsnes_libretro $dir_3ds/;
 	
-
 	# Cleanup
 	cd ~/src;
 	rm -rf $dir_build; mv -v $dir_out luma3ds-v$(date +%Y%m%d);
@@ -211,6 +210,7 @@ case $choice in
     	git clone --recursive https://github.com/yellows8/hblauncher_loader.git;
     	mkdir -p $dep_luma3ds/Retroarch; cd $dep_luma3ds/Retroarch; wget $url_latest_retroarch_nightly;
     	mkdir -p $dep_freeshop; cd $dep_freeshop; wget $url_freeshop; wget $url_enctitlekeys; wget $url_dectitlekeys;
+    	mv -v $dep_freeshop/download $dep_freeshop/decTitleKeys.bin; mv -v $dep_freeshop/downloadenc $dep_freeshop/encTitleKeys.bin;
     	echo "";
     	echo "Source updated!";
     	;;
