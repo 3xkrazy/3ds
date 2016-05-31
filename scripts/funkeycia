@@ -3,10 +3,11 @@
 
 # Define directories
 dir_bin=~/.bin
-dir_cia=~/src/cia
+dir_tmp=~/src/tmp
+dir_games=~/Documents/3ds/cia/games
 
-mkdir -vp $dir_cia; cd $dir_cia;
-cp $dir_bin/make_cdn_cia $dir_cia;
+mkdir -vp $dir_tmp; cd $dir_tmp;
+cp $dir_bin/make_cdn_cia $dir_tmp/;
 echo "";
 echo "https://3ds.titlekeys.com/";
 echo -n "Enter Title: "
@@ -15,3 +16,9 @@ echo -n "Enter encrypted title key: "
 read key;
 
 python $dir_bin/FunKeyCIA.py -title $title -key $key;
+
+echo "";
+echo -n "Rename title: "
+read title_rename;
+mv -v $dir_tmp/cia/$title/$title.cia $dir_games/$title_rename.cia;
+echo "Done! =)";
