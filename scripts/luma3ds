@@ -11,13 +11,14 @@ dep_misc=~/Documents/3ds/misc
 dep_filer=~/Documents/3ds/filer
 dep_jksv=~/Documents/3ds/jksv
 dep_retroarch=~/Documents/3ds/retroarch
-dep_savefiles=$dep_retroarch/savefiles
-dep_savestates=$dep_retroarch/savestates
+dep_savefiles=$dep_retroarch/cores/savefiles
+dep_savestates=$dep_retroarch/cores/savestates
 dep_roms=~/Documents/3ds/roms
 
 # Define url
 url_latest_retroarch_nightly=http://buildbot.libretro.com/nightly/nintendo/3ds/$(date +%Y-%m-%d)_RetroArch_3dsx.7z
 url_freeshop=https://github.com/Cruel/freeShop/releases/download/1.1/freeShop-1.1.cia
+url_enctitlekeys=https://3ds.titlekeys.com/downloadenc
 url_seeddb=https://3ds.titlekeys.com/seeddb
 
 # Define directories
@@ -49,15 +50,13 @@ case $choice in
 	1)
 	# Clean src directory
 	rm -rf $dir_build $dir_out $dir_src/luma3ds*;
-	mkdir -vp $dir_build $dir_out $dir_3ds $dir_luma $dir_d9game $dir_decrypt9 $dir_emunand9;
-	mkdir -vp $dir_uncart $dir_cia $dir_apps $dir_games $dir_updates $dir_retroarch;
+	mkdir -vp $dir_build $dir_out $dir_3ds $dir_luma $dir_d9game $dir_decrypt9 $dir_emunand9 $dir_uncart;
+	mkdir -vp $dir_cia $dir_apps $dir_games $dir_updates $dir_retroarch;
 
 	# Copy depencencies
 	cp -rR $dep_luma3ds/* $dir_build/;
 	cp -rR $dep_cia/apps/*.cia $dir_apps/;
-	cp -rR $dep_luma3ds/freeshop/*.cia $dir_apps/;
 	cp -rR $dep_decrypt9wip/aeskeydb.bin $dir_decrypt9/;
-	cp -rR $dep_luma3ds/seeddb/seeddb $dir_decrypt9/seeddb.bin;
 	cp -rR $dep_decrypt9wip/hs-* $dir_decrypt9/;
 	cp -rR $dep_filer $dir_out/;
 	cp -rR $dep_jksv $dir_out/;
@@ -66,6 +65,10 @@ case $choice in
 	cp -rR $dep_misc/hblauncherloader* $dir_3ds/;
 	cp -rR $dep_misc/boot.3dsx $dir_3ds/h.bin;
 	cp -rR $dep_roms $dir_out/;
+	mv $dir_build/seeddb/seeddb.bin $dir_decrypt9/;
+	mv $dir_build/freeShop $dir_out/;
+	mv $dir_out/freeShop/*.cia $dir_apps/;
+	
 
 	# Luma3DS
 	cd $dir_build/Luma3DS;
@@ -208,7 +211,9 @@ case $choice in
     	git clone --recursive https://github.com/yellows8/hblauncher_loader.git;
     	mkdir -p $dep_luma3ds/Retroarch; cd $dep_luma3ds/Retroarch; wget $url_latest_retroarch_nightly;
     	mkdir -p $dep_luma3ds/seeddb; cd $dep_luma3ds/seeddb; wget $url_seeddb;
-    	mkdir -p $dep_luma3ds/freeshop; cd $dep_luma3ds/freeshop; wget $url_freeshop;
+    	mv $dep_luma3ds/seeddb/seeddb $dep_luma3ds/seeddb/seeddb.bin;
+    	mkdir -p $dep_luma3ds/freeShop; cd $dep_luma3ds/freeShop; wget $url_freeshop; wget $url_enctitlekeys;
+    	mv -v $dep_luma3ds/freeShop/downloadenc $dep_luma3ds/freeShop/encTitleKeys.bin;
     	echo "";
     	echo "Source updated!";
     	;;
