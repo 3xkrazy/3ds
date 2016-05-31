@@ -6,6 +6,7 @@ dir_bin=~/.bin
 dir_cia=~/src/cia
 
 mkdir -vp $dir_cia; cd $dir_cia;
+cp $dir_bin/make_cdn_cia $dir_cia;
 echo "";
 echo "https://3ds.titlekeys.com/";
 echo -n "Enter Title: "
