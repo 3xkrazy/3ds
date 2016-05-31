@@ -12,4 +12,4 @@ read title;
 echo -n "Enter encrypted title key: "
 read key;
 
-python FunKeyCia.py -title $title -key $key;
+python FunKeyCIA.py -title $title -key $key;
