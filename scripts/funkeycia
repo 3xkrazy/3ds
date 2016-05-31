@@ -17,6 +17,7 @@ echo -n "Enter encrypted title key: "
 read key;
 echo -n "Rename title: "
 read title_rename;
+echo "";
 
 python $dir_bin/FunKeyCIA.py -title $title -key $key;
 
