@@ -1,0 +1,15 @@
+#!/bin/bash
+# funkeycia
+
+# Define directories
+dir_cia=~/src/cia
+
+mkdir -vp $dir_cia; cd $dir_cia;
+echo "";
+echo "https://3ds.titlekeys.com/";
+echo -n "Enter Title: "
+read title;
+echo -n "Enter encrypted title key: "
+read key;
+
+python FunKeyCia.py -title $title -key $key;
