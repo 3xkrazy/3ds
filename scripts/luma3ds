@@ -17,6 +17,7 @@ dep_roms=~/Documents/3ds/roms
 
 # Define url
 url_latest_retroarch_nightly=http://buildbot.libretro.com/nightly/nintendo/3ds/$(date +%Y-%m-%d)_RetroArch_3dsx.7z
+url_freeshop=https://github.com/Cruel/freeShop/releases/download/1.1/freeShop-1.1.cia
 url_seeddb=https://3ds.titlekeys.com/seeddb
 
 # Define directories
@@ -53,6 +54,8 @@ case $choice in
 
 	# Copy depencencies
 	cp -rR $dep_luma3ds/* $dir_build/;
+	cp -rR $dep_cia/apps/*.cia $dir_apps/;
+	cp -rR $dep_luma3ds/freeshop/*.cia $dir_apps/;
 	cp -rR $dep_decrypt9wip/aeskeydb.bin $dir_decrypt9/;
 	cp -rR $dep_luma3ds/seeddb/seeddb $dir_decrypt9/seeddb.bin;
 	cp -rR $dep_decrypt9wip/hs-* $dir_decrypt9/;
@@ -205,6 +208,7 @@ case $choice in
     	git clone --recursive https://github.com/yellows8/hblauncher_loader.git;
     	mkdir -p $dep_luma3ds/Retroarch; cd $dep_luma3ds/Retroarch; wget $url_latest_retroarch_nightly;
     	mkdir -p $dep_luma3ds/seeddb; cd $dep_luma3ds/seeddb; wget $url_seeddb;
+    	mkdir -p $dep_luma3ds/freeshop; cd $dep_luma3ds/freeshop; wget $url_freeshop;
     	echo "";
     	echo "Source updated!";
     	;;
