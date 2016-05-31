@@ -1,13 +1,17 @@
 #!/bin/bash
 # funkeycia
 
+# Define binaries
+bin_funkeycia=~/.bin/FunKeyCIA.py
+bin_make_cdn_cia=~/.bin/make_cdn_cia
+
 # Define directories
 dir_bin=~/.bin
 dir_tmp=~/src/tmp
 dir_games=~/Documents/3ds/cia/games
 
 mkdir -p $dir_tmp; cd $dir_tmp;
-cp $dir_bin/make_cdn_cia $dir_tmp/;
+cp $bin_make_cdn_cia $dir_tmp/;
 
 echo "";
 echo "https://3ds.titlekeys.com/";
@@ -19,7 +23,7 @@ echo -n "Rename title: "
 read title_rename;
 echo "";
 
-python $dir_bin/FunKeyCIA.py -title $title -key $key;
+python $bin_funkeycia -title $title -key $key;
 
 mv -v $dir_tmp/cia/$title/$title.cia $dir_games/$title_rename-$title.cia;
 echo "Done! =)";
