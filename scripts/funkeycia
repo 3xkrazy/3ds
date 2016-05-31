@@ -17,8 +17,7 @@ read key;
 
 python $dir_bin/FunKeyCIA.py -title $title -key $key;
 
-echo "";
 echo -n "Rename title: "
 read title_rename;
-mv -v $dir_tmp/cia/$title/$title.cia $dir_games/$title_rename.cia;
+mv -v $dir_tmp/cia/$title/$title.cia $dir_games/$title_rename-$title.cia;
 echo "Done! =)";
