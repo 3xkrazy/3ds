@@ -68,7 +68,6 @@ case $choice in
 	mv $dir_build/seeddb/seeddb.bin $dir_decrypt9/;
 	mv $dir_build/freeShop $dir_out/;
 	mv $dir_out/freeShop/*.cia $dir_apps/;
-	
 
 	# Luma3DS
 	cd $dir_build/Luma3DS;
@@ -183,7 +182,7 @@ case $choice in
 	mv -v $dir_build/Retroarch/3ds/fb_alpha_cps2_libretro $dir_3ds/;
 	mv -v $dir_build/Retroarch/3ds/fb_alpha_neo_libretro $dir_3ds/;
 	mv -v $dir_build/Retroarch/3ds/pocketsnes_libretro $dir_3ds/;
-	
+
 	# Cleanup
 	cd ~/src;
 	rm -rf $dir_build; mv -v $dir_out luma3ds-v$(date +%Y%m%d);
