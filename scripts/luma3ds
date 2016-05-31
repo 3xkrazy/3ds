@@ -3,7 +3,6 @@
 
 # Define local dependencies
 dep_luma3ds=~/Documents/3ds/luma3ds
-dep_freeshop=~/Documents/3ds/luma3ds/freeshop
 dep_a9lh=~/Documents/3ds/a9lh
 dep_decrypt9wip=~/Documents/3ds/decrypt9wip
 dep_cia=~/Documents/3ds/cia
@@ -16,12 +15,8 @@ dep_savefiles=$dep_retroarch/savefiles
 dep_savestates=$dep_retroarch/savestates
 dep_roms=~/Documents/3ds/roms
 
-# Define url dependencies
+# Define url
 url_latest_retroarch_nightly=http://buildbot.libretro.com/nightly/nintendo/3ds/$(date +%Y-%m-%d)_RetroArch_3dsx.7z
-url_freeshop=https://github.com/Cruel/freeShop/releases/download/1.0/freeShop-1.0.cia
-url_enctitlekeys=https://3ds.titlekeys.com/downloadenc
-url_dectitlekeys=https://3ds.titlekeys.com/download
-url_seeddb=https://3ds.titlekeys.com/seeddb
 
 # Define directories
 dir_src=~/src
@@ -39,15 +34,12 @@ dir_cia=$dir_out/cia
 dir_apps=$dir_cia/apps
 dir_games=$dir_cia/games
 dir_updates=$dir_cia/updates
-dir_freeshop=$dir_out/freeShop
-dir_ciangel=$dir_out/ciangel
 
 # Luma3DS Menu
 echo "";
 echo "**** Luma3DS Menu ****";
 echo "[1] Build CFW and tools";
 echo "[2] Update source";
-echo "[3] Update freeShop";
 echo -n "Select your choice: ";
 read choice;
 
@@ -56,13 +48,12 @@ case $choice in
 	# Clean src directory
 	rm -rf $dir_build $dir_out $dir_src/luma3ds*;
 	mkdir -vp $dir_build $dir_out $dir_3ds $dir_luma $dir_d9game $dir_decrypt9 $dir_emunand9;
-	mkdir -vp $dir_uncart $dir_cia $dir_apps $dir_games $dir_updates $dir_freeshop $dir_ciangel $dir_retroarch;
+	mkdir -vp $dir_uncart $dir_cia $dir_apps $dir_games $dir_updates $dir_retroarch;
 
 	# Copy depencencies
 	cp -rR $dep_luma3ds/* $dir_build/;
 	cp -rR $dep_decrypt9wip/aeskeydb.bin $dir_decrypt9/;
 	cp -rR $dep_decrypt9wip/hs-* $dir_decrypt9/;
-	cp -rR $dep_cia/apps/*.cia $dir_apps/; cp -rR $dir_build/freeshop/*.cia $dir_apps/;
 	cp -rR $dep_filer $dir_out/;
 	cp -rR $dep_jksv $dir_out/;
 	cp -rR $dep_savefiles $dir_retroarch/;
@@ -70,7 +61,6 @@ case $choice in
 	cp -rR $dep_misc/hblauncherloader* $dir_3ds/;
 	cp -rR $dep_misc/boot.3dsx $dir_3ds/h.bin;
 	cp -rR $dep_roms $dir_out/;
-	cp -rR $dir_build/freeshop/*.bin $dir_freeshop/;
 
 	# Luma3DS
 	cd $dir_build/Luma3DS;
@@ -155,15 +145,6 @@ case $choice in
 	make clean;
 	make;
 
-	# CIAngel
-	cd $dir_build/CIAngel;
-	make clean;
-	cp -v $dir_build/bannertool/output/bannertool $dir_build/CIAngel/buildtools/3ds/bannertool-linux;
-	sed -i -e 's|/CIAngel|/ciangel|g' $dir_build/CIAngel/source/main.cpp;
-	sed -i -e 's|/CIAngel|/ciangel|g' $dir_build/CIAngel/source/utils.cpp;
-	make;
-	cp -v $dir_build/CIAngel/output/CIAngel.cia $dir_apps/ciangel-v$(date +%Y%m%d).cia;
-
   	# FBI
 	cd $dir_build/FBI;
 	make clean;
@@ -217,29 +198,12 @@ case $choice in
     	git clone --recursive https://github.com/AuroraWright/uncart.git
     	git clone --recursive https://github.com/J-D-K/JKSM.git
     	git clone --recursive https://github.com/Steveice10/bannertool.git
-    	git clone --recursive https://github.com/llakssz/CIAngel.git;
     	git clone --recursive https://github.com/Steveice10/FBI.git;
     	git clone --recursive https://github.com/mtheall/ftpd;
     	git clone --recursive https://github.com/yellows8/hblauncher_loader.git;
     	mkdir -p $dep_luma3ds/Retroarch; cd $dep_luma3ds/Retroarch; wget $url_latest_retroarch_nightly;
-    	mkdir -p $dep_luma3ds/freeshop; cd $dep_luma3ds/freeshop;
-    	wget $url_freeshop; wget $url_enctitlekeys; wget $url_dectitlekeys; wget $url_seeddb;
-    	mv -v $dep_luma3ds/freeshop/download $dep_luma3ds/freeshop/decTitleKeys.bin;
-    	mv -v $dep_luma3ds/freeshop/downloadenc $dep_luma3ds/freeshop/encTitleKeys.bin;
-    	mv -v $dep_luma3ds/freeshop/seeddb $dep_luma3ds/freeshop/seeddb.bin;
     	echo "";
     	echo "Source updated!";
-    	;;
-
-    	3)
-    	# Update freeShop
-    	rm -rf $dep_luma3ds/freeshop; mkdir -vp $dep_luma3ds/freeshop; cd $dep_luma3ds/freeshop;
-    	wget $url_freeshop; wget $url_enctitlekeys; wget $url_dectitlekeys; wget $url_seeddb;
-    	mv -v $dep_luma3ds/freeshop/download $dep_luma3ds/freeshop/decTitleKeys.bin;
-    	mv -v $dep_luma3ds/freeshop/downloadenc $dep_luma3ds/freeshop/encTitleKeys.bin;
-    	mv -v $dep_luma3ds/freeshop/seeddb $dep_luma3ds/freeshop/seeddb.bin;
-    	echo "";
-    	echo "freeShop updated!";
     	;;
 
   	*)
