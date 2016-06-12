@@ -3,7 +3,7 @@
 
 # Define local dependencies
 dependencies=~/Documents/3ds
-dep_luma3ds=$dependencies/luma3ds
+dep_luma3ds=~/Documents/3ds/luma3ds
 dep_a9lh=$dependencies/a9lh
 dep_decrypt9wip=$dependencies/decrypt9wip
 dep_cia=$dependencies/cia
