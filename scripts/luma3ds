@@ -2,18 +2,19 @@
 # luma3ds
 
 # Define local dependencies
-dep_luma3ds=~/Documents/3ds/luma3ds
-dep_a9lh=~/Documents/3ds/a9lh
-dep_decrypt9wip=~/Documents/3ds/decrypt9wip
-dep_cia=~/Documents/3ds/cia
-dep_locales=~/Documents/3ds/locales
-dep_misc=~/Documents/3ds/misc
-dep_filer=~/Documents/3ds/filer
-dep_jksv=~/Documents/3ds/jksv
-dep_retroarch=~/Documents/3ds/retroarch
-dep_savefiles=$dep_retroarch/cores/savefiles
-dep_savestates=$dep_retroarch/cores/savestates
-dep_roms=~/Documents/3ds/roms
+dependencies=~/Documents/3ds
+dep_luma3ds=$dependencies/luma3ds
+dep_a9lh=$dependencies/a9lh
+dep_decrypt9wip=$dependencies/decrypt9wip
+dep_cia=$dependencies/cia
+dep_locales=$dependencies/locales
+dep_misc=$dependencies/misc
+dep_filer=$dependencies/filer
+dep_jksv=$dependencies/jksv
+dep_retroarch=$dependencies/retroarch
+dep_savefiles=$dependencies/$dep_retroarch/cores/savefiles
+dep_savestates=$dependencies/$dep_retroarch/cores/savestates
+dep_roms=$dependencies/roms
 
 # Define url
 url_latest_retroarch=http://buildbot.libretro.com/nightly/nintendo/3ds/$(date +%Y-%m-%d)_RetroArch_3dsx.7z
