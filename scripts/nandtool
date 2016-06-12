@@ -1,7 +1,7 @@
 #!/bin/bash
 # nandtool
 
-dir_nand=~/Documents/3ds/nand
+dir_nand=~/Documents/3ds/dependencies/nand
 
 echo "Which block device is your 3DS connected to?";
 echo [1] /dev/sdb
@@ -11,13 +11,13 @@ echo -n "Select your choice: ";
 read x
 case $x in
         1)
-                block_device=sdb
+                block_device=/dev/sdb
                 ;;
         2)
-                block_device=sdc
+                block_device=/dev/sdc
                 ;;
         3)
-                block_device=sdd
+                block_device=/dev/sdd
                 ;;
         *)
 		echo "";
@@ -27,15 +27,15 @@ case $x in
 esac
 
 << COMMENT1
-if [ ! -f /dev/$block_device ]; then
+if [ ! -f $block_device ]; then
 	echo "";
-	echo Block device /dev/$block_device does not exist!;
+	echo Block device $block_device does not exist!;
 	exit 1;
 fi
 COMMENT1
 
 echo "";
-echo Your 3DS is connected at /dev/$block_device
+echo Your 3DS is connected at $block_device
 echo ""
 echo "[1] Backup 3DS nand";
 echo "[2] Write to 3DS nand";
@@ -46,7 +46,7 @@ case $y in
 		echo -n "Enter nand backup name: ";
 		read nand
 		echo Backing up 3DS nand file: $nand;
-		sudo dd if=/dev/$block_device of=$dir_nand/$nand bs=1M;
+		sudo dd if=$block_device of=$dir_nand/$nand bs=1M;
 		echo Backup completed! Calculating MD5 hash...;
 		md5sum $dir_nand/$nand;
 		;;
@@ -66,7 +66,7 @@ case $y in
 		else
 			echo "";
 			echo Writing $nand to 3DS nand...
-			sudo dd if=$dir_nand/$nand of=/dev/$block_device bs=1M;
+			sudo dd if=$dir_nand/$nand of=$block_device bs=1M;
 			echo "Write completed!";
 		fi
 		;;
