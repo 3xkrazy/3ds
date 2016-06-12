@@ -5,6 +5,7 @@
 dir_bin=~/.bin
 dir_tmp=~/src/tmp
 dir_games=~/Documents/3ds/dependencies/cia/games
+dir_locales=~/Documents/3ds/dependencies/locales
 
 # Define binaries
 bin_funkeycia=$dir_bin/FunKeyCIA.py
@@ -28,5 +29,9 @@ python $bin_funkeycia -title $title -key $key;
 
 echo "Moving game file...";
 mv -v $dir_tmp/cia/$title/$title.cia $dir_games/$title_rename-$title.cia;
+touch $dir_locales/$title.txt;
+echo "USA EN" > $dir_locales/title.txt;
+cd $dir_locales;
+for f in * ; do mv -- "$f" "$(tr [:lower:] [:upper:] <<< "$f")" ; done
 echo "";
 echo "Finished! <(' '  )> <( ' ' )> <(  ' ')>";
