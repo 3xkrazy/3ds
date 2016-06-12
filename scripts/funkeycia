@@ -4,7 +4,7 @@
 # Define directories
 dir_bin=~/.bin
 dir_tmp=~/src/tmp
-dir_games=~/Documents/3ds/cia/games
+dir_games=~/Documents/3ds/dependencies/cia/games
 
 # Define binaries
 bin_funkeycia=$dir_bin/FunKeyCIA.py
