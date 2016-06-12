@@ -2,9 +2,9 @@
 #filer
 
 # Define directories
-dir_filer=~/Documents/3ds/filer
-dir_jksv=~/Documents/3ds/jksv
-dir_retroarch=~/Documents/3ds/retroarch
+dir_filer=~/Documents/3ds/dependencies/filer
+dir_jksv=~/Documents/3ds/dependencies/jksv
+dir_retroarch=~/Documents/3ds/dependencies/retroarch
 dir_savefiles=$dir_retroarch/cores/savefiles
 dir_savestates=$dir_retroarch/cores/savestates
 
