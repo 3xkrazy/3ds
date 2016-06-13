@@ -20,22 +20,22 @@ echo "https://3ds.titlekeys.com/";
 echo "";
 echo "***** FunkeyCIA Menu *****";
 echo "[1] Download game";
-echo "[2] Download update/patch";
+echo "[2] Download dlc";
+echo "[3] Download update/patch";
 echo -n "Select your choice: ";
 read choice;
+
 case $choice in
   1)
   echo "";
-  echo -n "Enter Title: "
+  echo -n "Enter Title: ";
   read title;
   echo -n "Enter encrypted title key: ";
   read key;
-  echo -n "Rename title: "
+  echo -n "Rename title: ";
   read title_rename;
   echo "";
-
   python $bin_funkeycia -title $title -key $key;
-
   echo "Moving game file...";
   mv -v $dir_tmp/cia/$title/$title.cia $dir_games/$title_rename-$title.cia;
   touch $dir_locales/$title.txt;
@@ -43,21 +43,37 @@ case $choice in
   cd $dir_locales;
   for f in * ; do mv -- "$f" "$(tr [:lower:] [:upper:] <<< "$f")" ; done;
   ;;
+
   2)
   echo "";
-  echo -n "Enter Title: "
+  echo -n "Enter DLC Title: ";
   read title;
   echo -n "Enter encrypted title key: ";
   read key;
-  echo -n "Rename title: "
+  echo -n "Rename DLC title: ";
   read title_rename;
   echo "";
-
   python $bin_funkeycia -title $title -key $key;
-
-  echo "Moving update file...";
-  mv -v $dir_tmp/cia/$title/$title.cia $dir_updates/$title_rename-$title.cia;
+  echo "Moving game file...";
+  mv -v $dir_tmp/cia/$title/$title.cia $dir_updates/$title_rename-dlc-$title.cia;
   ;;
+
+  3)
+  echo "";
+  echo -n "Enter Title: ";
+  read title;
+  echo -n "Enter encrypted title key: ";
+  read key;
+  echo -n "Rename title: ";
+  read title_rename;
+  echo -n "Enter update version: ";
+  read version;
+  echo "";
+  python $bin_funkeycia -title $title -key $key;
+  echo "Moving update file...";
+  mv -v $dir_tmp/cia/$title/$title.cia $dir_updates/$title_rename-update_v$version-$title.cia;
+  ;;
+
   *)
   echo "";
   echo "Invalid choice!";
@@ -67,3 +83,4 @@ esac
 
 echo "";
 echo "Finished! <(' '  )> <( ' ' )> <(  ' ')>";
+exit 0;
