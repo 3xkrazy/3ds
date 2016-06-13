@@ -21,7 +21,7 @@ echo "";
 echo "*** FunkeyCIA Menu ***";
 echo "[1] Download game";
 echo "[2] Download dlc";
-echo "[3] Download update";
+echo "[3] Download patch";
 echo -n "Select your choice: ";
 read choice;
 
@@ -66,12 +66,12 @@ case $choice in
   read key;
   echo -n "Rename file: ";
   read title_rename;
-  echo -n "Enter update version: ";
+  echo -n "Enter patch version: ";
   read version;
   echo "";
   python $bin_funkeycia -title $title -key $key;
   echo "Moving update file...";
-  mv -v $dir_tmp/cia/$title/$title.cia $dir_updates/$title_rename-update_v$version-$title.cia;
+  mv -v $dir_tmp/cia/$title/$title.cia $dir_updates/$title_rename-patch_v$version-$title.cia;
   ;;
 
   *)
