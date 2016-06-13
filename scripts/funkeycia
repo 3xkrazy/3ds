@@ -18,21 +18,21 @@ cp $bin_make_cdn_cia $dir_tmp/;
 echo "";
 echo "https://3ds.titlekeys.com/";
 echo "";
-echo "***** FunkeyCIA Menu *****";
+echo "*** FunkeyCIA Menu ***";
 echo "[1] Download game";
 echo "[2] Download dlc";
-echo "[3] Download update/patch";
+echo "[3] Download update";
 echo -n "Select your choice: ";
 read choice;
 
 case $choice in
   1)
   echo "";
-  echo -n "Enter Title: ";
+  echo -n "Enter Title ID: ";
   read title;
   echo -n "Enter encrypted title key: ";
   read key;
-  echo -n "Rename title: ";
+  echo -n "Rename game file: ";
   read title_rename;
   echo "";
   python $bin_funkeycia -title $title -key $key;
@@ -46,11 +46,11 @@ case $choice in
 
   2)
   echo "";
-  echo -n "Enter DLC Title: ";
+  echo -n "Enter DLC Title ID: ";
   read title;
   echo -n "Enter encrypted title key: ";
   read key;
-  echo -n "Rename DLC title: ";
+  echo -n "Rename DLC file: ";
   read title_rename;
   echo "";
   python $bin_funkeycia -title $title -key $key;
@@ -60,11 +60,11 @@ case $choice in
 
   3)
   echo "";
-  echo -n "Enter Title: ";
+  echo -n "Enter Title ID: ";
   read title;
   echo -n "Enter encrypted title key: ";
   read key;
-  echo -n "Rename title: ";
+  echo -n "Rename file: ";
   read title_rename;
   echo -n "Enter update version: ";
   read version;
