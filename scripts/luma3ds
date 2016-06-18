@@ -81,7 +81,7 @@ case $choice in
 	mv -v $dir_build/Luma3DS/out/3ds/Luma3DS $dir_3ds/;
 	mv -v $dir_build/Luma3DS/out/Luma3DS.dat $dir_3ds/Luma3DS/;
 	cp -rR $dep_locales $dir_luma/;
-
+<< COMMENT1
 	# arm9loaderhax
 	cd $dir_build/arm9loaderhax;
 	make clean;
@@ -105,6 +105,31 @@ case $choice in
 	mv -v $dir_build/SafeA9LHInstaller/out/SafeA9LHInstaller.dat $dir_3ds/SafeA9LHInstaller/;
 	mv -v $dir_build/arm9loaderhax/out/* $dir_3ds/SafeA9LHInstaller/;
 	cp -v $dep_a9lh/* $dir_3ds/SafeA9LHInstaller/;
+COMMENT1
+	# arm9loaderhax-n3ds
+	cd $dir_build/arm9loaderhax;
+	make clean;
+	sed -i -e 's|"arm9loaderhax.bin"|"/luma/payloads/boot.bin"|g' $dir_build/arm9loaderhax/payload_stage2/source/main.c;
+	sed -i -e 's|"sdmc:/arm9loaderhax.pack"|"sdmc:/3ds/arm9loaderhax-n3ds/arm9loaderhax.pack"|g' $dir_build/arm9loaderhax/payload_installer/installer/source/main.c;
+	cp $dep_a9lh/delebile/* $dir_build/arm9loaderhax/data_input/;
+	rm $dir_build/arm9loaderhax/data_input/otp.bin-o3ds;
+	mv $dir_build/arm9loaderhax/data_input/otp.bin-n3ds $dir_build/arm9loaderhax/data_input/otp.bin;
+	make;
+	mv $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-n3ds;
+	mv $dir_3ds/arm9loaderhax-n3ds/arm9loaderhax $dir_payloads/x_arm9loaderhax-n3ds.bin;
+	rm -rf $dir_build/arm9loaderhax; cp -rR $dep_luma3ds/arm9loaderhax $dir_build/;
+
+	# arm9loaderhax-o3ds
+	cd $dir_build/arm9loaderhax;
+	make clean;
+	sed -i -e 's|"arm9loaderhax.bin"|"/luma/payloads/boot.bin"|g' $dir_build/arm9loaderhax/payload_stage2/source/main.c;
+	sed -i -e 's|"sdmc:/arm9loaderhax.pack"|"sdmc:/3ds/arm9loaderhax-o3ds/arm9loaderhax.pack"|g' $dir_build/arm9loaderhax/payload_installer/installer/source/main.c;
+	cp $dep_a9lh/delebile/* $dir_build/arm9loaderhax/data_input/;
+	rm $dir_build/arm9loaderhax/data_input/otp.bin-n3ds;
+	mv $dir_build/arm9loaderhax/data_input/otp.bin-o3ds $dir_build/arm9loaderhax/data_input/otp.bin;
+	make;
+	mv $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-o3ds;
+	mv $dir_3ds/arm9loaderhax-o3ds/arm9loaderhax $dir_payloads/x_arm9loaderhax-o3ds.bin;
 
   	# Decrypt9WIP
 	cd $dir_build/Decrypt9WIP;
@@ -199,8 +224,9 @@ case $choice in
     	echo "";
     	echo "Fetching Homebrew...";
     	git clone --recursive https://github.com/AuroraWright/Luma3DS.git;
-    	git clone --recursive -b noscreeninit https://github.com/AuroraWright/arm9loaderhax.git
-    	git clone --recursive https://github.com/AuroraWright/SafeA9LHInstaller.git
+#    	git clone --recursive -b noscreeninit https://github.com/AuroraWright/arm9loaderhax.git
+#    	git clone --recursive https://github.com/AuroraWright/SafeA9LHInstaller.git
+	git clone --recursive https://github.com/delebile/arm9loaderhax.git
     	git clone --recursive https://github.com/d0k3/Decrypt9WIP.git;
     	git clone --recursive https://github.com/d0k3/EmuNAND9.git;
     	git clone --recursive https://github.com/d0k3/GodMode9.git;
