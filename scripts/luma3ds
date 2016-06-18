@@ -116,7 +116,7 @@ COMMENT1
 	mv $dir_build/arm9loaderhax/data_input/otp.bin-n3ds $dir_build/arm9loaderhax/data_input/otp.bin;
 	make;
 	mv $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-n3ds;
-	mv $dir_3ds/arm9loaderhax-n3ds/arm9loaderhax $dir_payloads/x_arm9loaderhax-n3ds.bin;
+	mv $dir_3ds/arm9loaderhax-n3ds/arm9loaderhax.bin $dir_payloads/x_arm9loaderhax-n3ds.bin;
 	rm -rf $dir_build/arm9loaderhax; cp -rR $dep_luma3ds/arm9loaderhax $dir_build/;
 
 	# arm9loaderhax-o3ds
@@ -129,7 +129,7 @@ COMMENT1
 	mv $dir_build/arm9loaderhax/data_input/otp.bin-o3ds $dir_build/arm9loaderhax/data_input/otp.bin;
 	make;
 	mv $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-o3ds;
-	mv $dir_3ds/arm9loaderhax-o3ds/arm9loaderhax $dir_payloads/x_arm9loaderhax-o3ds.bin;
+	mv $dir_3ds/arm9loaderhax-o3ds/arm9loaderhax.bin $dir_payloads/x_arm9loaderhax-o3ds.bin;
 
   	# Decrypt9WIP
 	cd $dir_build/Decrypt9WIP;
