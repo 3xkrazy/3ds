@@ -50,7 +50,7 @@ case $choice in
 	mkdir -p $dir_build $dir_out $dir_3ds $dir_cia;
 
 	# Copy depencencies
-	cp -rR $dep_dist/* $dir_build/; cp -rR $dep_cia/apps/*.cia $dir_cia/; cp -rR $dep_filer $dir_out/;
+	cp -rR $dep_dist/* $dir_build/; cp $dep_cia/apps/*.cia $dir_cia/; cp -rR $dep_filer $dir_out/;
 	mv $dir_build/freeShop $dir_out/; mv $dir_out/freeShop/*.cia $dir_cia/;
 
 	# Luma3DS
@@ -70,11 +70,10 @@ case $choice in
 	make clean;
 	sed -i -e 's|"sdmc:/arm9loaderhax.pack"|"sdmc:/3ds/arm9loaderhax-n3ds/arm9loaderhax.pack"|g' $dir_build/arm9loaderhax/payload_installer/installer/source/main.c;
 	cp $dep_a9lh/delebile/* $dir_build/arm9loaderhax/data_input/;
-	rm $dir_build/arm9loaderhax/data_input/otp.bin-o3ds;
 	mv $dir_build/arm9loaderhax/data_input/otp.bin-n3ds $dir_build/arm9loaderhax/data_input/otp.bin;
 	make;
 	mv $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-n3ds;
-	mv $dir_3ds/arm9loaderhax-n3ds/arm9loaderhax.bin $dir_payloads/x_arm9loaderhax-n3ds.bin;
+	mv $dir_3ds/arm9loaderhax-n3ds/arm9loaderhax.bin $dir_payloads/x_arm9loaderhax-n3ds-v$(date +%Y%m%d).bin;
 	rm -rf $dir_build/arm9loaderhax; cp -rR $dep_dist/arm9loaderhax $dir_build/;
 
 	# arm9loaderhax-o3ds
@@ -82,11 +81,10 @@ case $choice in
 	make clean;
 	sed -i -e 's|"sdmc:/arm9loaderhax.pack"|"sdmc:/3ds/arm9loaderhax-o3ds/arm9loaderhax.pack"|g' $dir_build/arm9loaderhax/payload_installer/installer/source/main.c;
 	cp $dep_a9lh/delebile/* $dir_build/arm9loaderhax/data_input/;
-	rm $dir_build/arm9loaderhax/data_input/otp.bin-n3ds;
 	mv $dir_build/arm9loaderhax/data_input/otp.bin-o3ds $dir_build/arm9loaderhax/data_input/otp.bin;
 	make;
 	mv $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-o3ds;
-	mv $dir_3ds/arm9loaderhax-o3ds/arm9loaderhax.bin $dir_payloads/x_arm9loaderhax-o3ds.bin;
+	mv $dir_3ds/arm9loaderhax-o3ds/arm9loaderhax.bin $dir_payloads/x_arm9loaderhax-o3ds-v$(date +%Y%m%d).bin;
 
   	# Decrypt9WIP
 	cd $dir_build/Decrypt9WIP; mkdir -p $dir_d9game $dir_decrypt9;
@@ -147,7 +145,7 @@ case $choice in
 	sed -i -e 's|"sdmc:/|"sdmc:/3ds/|g' $dir_build/hblauncher_loader/source/hblauncher_loader.c;
 	make;
 	mv -v $dir_build/hblauncher_loader/hblauncher_loader.cia $dir_cia/hblauncher_loader-v$(date +%Y%m%d).cia;
-	cp -rR $dep_misc/hblauncherloader* $dir_3ds/; cp -rR $dep_misc/boot.3dsx $dir_3ds/h.bin;
+	cp $dep_misc/hblauncherloader* $dir_3ds/; cp $dep_misc/boot.3dsx $dir_3ds/h.bin;
 
 	# Setup RetroArch 3dsx
 	cd $dir_build/Retroarch; mkdir -p $dir_retroarch;
