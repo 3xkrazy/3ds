@@ -47,6 +47,7 @@ case $choice in
   echo "USA EN" > $dep_locales/$title.txt;
   cd $dep_locales;
   echo $unique_id-$title_rename >> $dep_title_id;
+  sort -o $dep_title_id $dep_title_id;
   for f in * ; do mv -- "$f" "$(tr [:lower:] [:upper:] <<< "$f")" ; done;
   ;;
 
