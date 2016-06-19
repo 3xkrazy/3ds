@@ -117,8 +117,8 @@ case $choice in
 	cd $dir_build/uncart; mkdir -p $dir_uncart;
 	make clean;
 	sed -i -e 's|"/%.16s.3d%c"|"/uncart/%.16s.3d%c"|g' $dir_build/uncart/source/main.c;
-	make;
-	mv -v $dir_build/uncart/arm9loaderhax.bin $dir_payloads/down_uncart-v$(date +%Y%m%d).bin;
+	make a9lh;
+	mv -v $dir_build/uncart/uncart_arm9loaderhax.bin $dir_payloads/down_uncart-v$(date +%Y%m%d).bin;
 
 	# bannertool
 	cd $dir_build/bannertool;
