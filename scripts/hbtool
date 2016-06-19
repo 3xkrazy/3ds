@@ -7,9 +7,9 @@ dep_dist=~/Documents/3ds/dist
 dep_a9lh=$dependencies/a9lh
 dep_decrypt9wip=$dependencies/decrypt9wip
 dep_cia=$dependencies/cia
+dep_filer=$dependencies/filer
 dep_locales=$dependencies/locales
 dep_misc=$dependencies/misc
-dep_filer=$dependencies/filer
 dep_retroarch=$dependencies/retroarch
 dep_savefiles=$dependencies/$dep_retroarch/cores/savefiles
 dep_savestates=$dependencies/$dep_retroarch/cores/savestates
@@ -20,6 +20,7 @@ dir_src=~/src
 dir_out=$dir_src/out
 dir_build=$dir_src/build
 dir_3ds=$dir_out/3ds
+dir_cia=$dir_out/cia
 dir_luma=$dir_out/luma
 dir_payloads=$dir_luma/payloads
 dir_d9game=$dir_out/d9game
@@ -27,7 +28,6 @@ dir_decrypt9=$dir_out/decrypt9
 dir_emunand9=$dir_out/emunand9
 dir_uncart=$dir_out/uncart
 dir_retroarch=$dir_out/retroarch/cores
-dir_cia=$dir_out/cia
 
 # Define url
 url_latest_retroarch=http://buildbot.libretro.com/nightly/nintendo/3ds/$(date +%Y-%m-%d)_RetroArch_3dsx.7z
