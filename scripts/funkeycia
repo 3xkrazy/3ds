@@ -1,12 +1,16 @@
 #!/bin/bash
 # funkeycia
 
+# Define dependencies
+dep_locales=~/Documents/3ds/dependencies/locales
+dep_title_id=$dep_locales/TITLE_ID.DB
+
 # Define directories
 dir_bin=~/.bin
 dir_tmp=~/src/tmp
 dir_games=~/Documents/3ds/dependencies/cia/games
 dir_updates=~/Documents/3ds/dependencies/cia/updates
-dir_locales=~/Documents/3ds/dependencies/locales
+
 
 # Define binaries
 bin_funkeycia=$dir_bin/FunKeyCIA.py
@@ -35,12 +39,14 @@ case $choice in
   echo -n "Rename game file: ";
   read title_rename;
   echo "";
+  unique_id=${title:9:5};
   python $bin_funkeycia -title $title -key $key;
   echo "Moving game file...";
   mv -v $dir_tmp/cia/$title/$title.cia $dir_games/$title_rename-$title.cia;
-  touch $dir_locales/$title.txt;
-  echo "USA EN" > $dir_locales/$title.txt;
-  cd $dir_locales;
+  touch $dep_locales/$title.txt;
+  echo "USA EN" > $dep_locales/$title.txt;
+  cd $dep_locales;
+  echo $unique_id-$title_rename >> $dep_title_id;
   for f in * ; do mv -- "$f" "$(tr [:lower:] [:upper:] <<< "$f")" ; done;
   ;;
 
