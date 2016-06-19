@@ -176,7 +176,6 @@ case $choice in
     	git clone --recursive https://github.com/d0k3/EmuNAND9.git;
     	git clone --recursive https://github.com/d0k3/GodMode9.git;
     	git clone --recursive https://github.com/citra-emu/uncart;
-    	git clone --recursive https://github.com/J-D-K/JKSM.git;
     	git clone --recursive https://github.com/Steveice10/bannertool.git;
     	git clone --recursive https://github.com/Steveice10/FBI.git;
     	git clone --recursive https://github.com/mtheall/ftpd;
