@@ -2,8 +2,8 @@
 # funkeycia
 
 # Define dependencies
-dep_locales=~/Documents/3ds/dependencies/locales
-dep_title_id=$dep_locales/TITLE_ID.DB
+dep_locale=~/Documents/3ds/dependencies/corbenik/locale
+dep_title_id=$dep_locale/TITLE_ID.DB
 
 # Define directories
 dir_bin=~/.bin
@@ -43,9 +43,8 @@ case $choice in
   python $bin_funkeycia -title $title -key $key;
   echo "Moving game file...";
   mv -v $dir_tmp/cia/$title/$title.cia $dir_games/$unique_id-$title_rename.cia;
-  touch $dep_locales/$title.txt;
-  echo "USA EN" > $dep_locales/$title.txt;
-  cd $dep_locales;
+  echo "USA EN" > $dep_locale/$title;
+  cd $dep_locale;
   echo $unique_id-$title_rename >> $dep_title_id;
   sort -o $dep_title_id $dep_title_id;
   for f in * ; do mv -- "$f" "$(tr [:lower:] [:upper:] <<< "$f")" ; done;
