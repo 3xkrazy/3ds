@@ -42,7 +42,7 @@ case $choice in
   unique_id=${title:9:5};
   python $bin_funkeycia -title $title -key $key;
   echo "Moving game file...";
-  mv -v $dir_tmp/cia/$title/$title.cia $dir_games/$title_rename-$title.cia;
+  mv -v $dir_tmp/cia/$title/$title.cia $dir_games/$unique_id-$title_rename.cia;
   touch $dep_locales/$title.txt;
   echo "USA EN" > $dep_locales/$title.txt;
   cd $dep_locales;
@@ -60,9 +60,10 @@ case $choice in
   echo -n "Rename DLC file: ";
   read title_rename;
   echo "";
+  unique_id=${title:9:5};
   python $bin_funkeycia -title $title -key $key;
   echo "Moving game file...";
-  mv -v $dir_tmp/cia/$title/$title.cia $dir_updates/$title_rename-dlc-$title.cia;
+  mv -v $dir_tmp/cia/$title/$title.cia $dir_updates/$unique_id-$title_rename-dlc.cia;
   ;;
 
   3)
@@ -76,9 +77,10 @@ case $choice in
   echo -n "Enter patch version: ";
   read version;
   echo "";
+  unique_id=${title:9:5};
   python $bin_funkeycia -title $title -key $key;
   echo "Moving update file...";
-  mv -v $dir_tmp/cia/$title/$title.cia $dir_updates/$title_rename-patch_v$version-$title.cia;
+  mv -v $dir_tmp/cia/$title/$title.cia $dir_updates/$unique_id-$title_rename-patch_v$version.cia;
   ;;
 
   *)
