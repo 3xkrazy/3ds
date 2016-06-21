@@ -70,9 +70,10 @@
   echo "*********** Menu ***********";
   echo "[1] Update source files";
   echo "[2] Build corbenik and tools";
-  echo "Optional:";
-  echo "[3] Set corbenik to n3ds";
-  echo "[4] Set corbenik to o3ds";
+  echo "";
+  echo "******* Post-build *******";
+  echo "[3] Set files for n3ds";
+  echo "[4] Set files for o3ds";
   echo -n "Your Choice: ";
   read choice;
 
@@ -125,9 +126,9 @@ case $choice in
           mv $dep_distfiles/seeddb/seeddb $dep_distfiles/seeddb/seeddb.bin;
 
         # freeShop
-          mkdir -p $dep_dist/freeShop; cd $dep_dist/freeShop;
+          mkdir -p $dep_distfiles/freeShop; cd $dep_distfiles/freeShop;
           wget $url_freeshop; wget $url_enctitlekeys;
-          mv $dep_dist/freeShop/downloadenc $dep_dist/freeShop/encTitleKeys.bin;
+          mv $dep_distfiles/freeShop/downloadenc $dep_distfiles/freeShop/encTitleKeys.bin;
 
       echo "";
       echo "Source files updated!";
@@ -156,7 +157,7 @@ case $choice in
       mv $dir_build/corbenik/keys $dir_corbenik/;
       cp $dep_corbenik/*.key $dir_corbenik/keys/;
       mkdir -p $dir_chain;
-  
+
     # ARM9LoaderHax-n3ds
       cd $dir_build/arm9loaderhax;
       make clean;
@@ -166,7 +167,7 @@ case $choice in
       make;
       mv -v $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-n3ds;
       mv -v $dir_3ds/arm9loaderhax-n3ds/arm9loaderhax.bin $dir_chain/ARM9LoaderHax-n3ds.bin;
-      rm -rf $dir_build/arm9loaderhax; cp -rR $dep_dist/arm9loaderhax $dir_build/;
+      rm -rf $dir_build/arm9loaderhax; cp -rR $dep_distfiles/arm9loaderhax $dir_build/;
 
     # ARM9LoaderHax-o3ds
       cd $dir_build/arm9loaderhax;
