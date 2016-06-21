@@ -37,7 +37,7 @@
     url_enctitlekeys=https://3ds.titlekeys.com/downloadenc;
 
   # seeddb
-    url_seeddb=https://3ds.titlekeys.com/downloadenc;
+    url_seeddb=https://3ds.titlekeys.com/seeddb;
 
 # Define local dependencies
   dep_dependencies=~/Documents/3ds/dependencies;
@@ -109,12 +109,12 @@ case $choice in
           wget $url_n3ds_twl; mv $dep_distfiles/corbenik/firmware/000000* $dep_distfiles//corbenik/firmware/twl-n3ds;
           wget $url_o3ds_twl; mv $dep_distfiles/corbenik/firmware/000000* $dep_distfiles//corbenik/firmware/twl-o3ds;
           cd $dep_distfiles/corbenik/keys;
-          wget $url_n3ds_firm_cetk; mv $dep_distfiles/corbenik/keys/cetk mv $dep_distfiles/corbenik/keys/native.cetk-n3ds;
-          wget $url_o3ds_firm_cetk; mv $dep_distfiles/corbenik/keys/cetk mv $dep_distfiles/corbenik/keys/native.cetk-o3ds;
-          wget $url_n3ds_agb_cetk; mv $dep_distfiles/corbenik/keys/cetk mv $dep_distfiles/corbenik/keys/agb.cetk-n3ds;
-          wget $url_o3ds_agb_cetk; mv $dep_distfiles/corbenik/keys/cetk mv $dep_distfiles/corbenik/keys/agb.cetk-o3ds;
-          wget $url_n3ds_twl_cetk; mv $dep_distfiles/corbenik/keys/cetk mv $dep_distfiles/corbenik/keys/twl.cetk-n3ds;
-          wget $url_o3ds_twl_cetk; mv $dep_distfiles/corbenik/keys/cetk mv $dep_distfiles/corbenik/keys/twl.cetk-o3ds;
+          wget $url_n3ds_firm_cetk; mv $dep_distfiles/corbenik/keys/cetk $dep_distfiles/corbenik/keys/native.cetk-n3ds;
+          wget $url_o3ds_firm_cetk; mv $dep_distfiles/corbenik/keys/cetk $dep_distfiles/corbenik/keys/native.cetk-o3ds;
+          wget $url_n3ds_agb_cetk; mv $dep_distfiles/corbenik/keys/cetk $dep_distfiles/corbenik/keys/agb.cetk-n3ds;
+          wget $url_o3ds_agb_cetk; mv $dep_distfiles/corbenik/keys/cetk $dep_distfiles/corbenik/keys/agb.cetk-o3ds;
+          wget $url_n3ds_twl_cetk; mv $dep_distfiles/corbenik/keys/cetk $dep_distfiles/corbenik/keys/twl.cetk-n3ds;
+          wget $url_o3ds_twl_cetk; mv $dep_distfiles/corbenik/keys/cetk $dep_distfiles/corbenik/keys/twl.cetk-o3ds;
 
         # Retroarch
           mkdir -p $dep_distfiles/Retroarch; cd $dep_distfiles/Retroarch;
@@ -266,9 +266,9 @@ case $choice in
       mv corbenik/firmware/native-n3ds corbenik/firmware/native;
       mv corbenik/firmware/agb-n3ds corbenik/firmware/agb;
       mv corbenik/firmware/twl-n3ds corbenik/firmware/twl;
-      mv corbenik/keys/native.cetk-n3ds; corbenik/keys/native.cetk;
-      mv corbenik/keys/agb.cetk-n3ds; corbenik/keys/agb.cetk;
-      mv corbenik/keys/twl.cetk-n3ds; corbenik/keys/twl.cetk;
+      mv corbenik/keys/native.cetk-n3ds corbenik/keys/native.cetk;
+      mv corbenik/keys/agb.cetk-n3ds corbenik/keys/agb.cetk;
+      mv corbenik/keys/twl.cetk-n3ds corbenik/keys/twl.cetk;
   ;;
 
   4)
@@ -284,9 +284,9 @@ case $choice in
       mv corbenik/firmware/native-o3ds corbenik/firmware/native;
       mv corbenik/firmware/agb-o3ds corbenik/firmware/agb;
       mv corbenik/firmware/twl-o3ds corbenik/firmware/twl;
-      mv corbenik/keys/native.cetk-o3ds; corbenik/keys/native.cetk;
-      mv corbenik/keys/agb.cetk-o3ds; corbenik/keys/agb.cetk;
-      mv corbenik/keys/twl.cetk-o3ds; corbenik/keys/twl.cetk;
+      mv corbenik/keys/native.cetk-o3ds corbenik/keys/native.cetk;
+      mv corbenik/keys/agb.cetk-o3ds corbenik/keys/agb.cetk;
+      mv corbenik/keys/twl.cetk-o3ds corbenik/keys/twl.cetk;
   ;;
 
   *)
