@@ -118,7 +118,7 @@ case $choice in
 
         # Retroarch
           mkdir -p $dep_distfiles/Retroarch; cd $dep_distfiles/Retroarch;
-          wget $url_latest_retroarch;
+          wget $url_retroarch;
 
         # Seedbin
           mkdir -p $dep_distfiles/seeddb; cd $dep_distfiles/seeddb;
@@ -156,6 +156,7 @@ case $choice in
       mv $dir_build/corbenik/firmware $dir_corbenik/;
       mv $dir_build/corbenik/keys $dir_corbenik/;
       cp $dep_corbenik/*.key $dir_corbenik/keys/;
+      cp -rR $dep_locale $dir_corbenik/;
       mkdir -p $dir_chain;
 
     # ARM9LoaderHax-n3ds
@@ -185,8 +186,8 @@ case $choice in
       make;
       mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_chain/Decrypt9.bin;
       mv $dir_build/Decrypt9WIP/resources/d9logo.bin $dir_decrypt9/;
-      cp -rR $dep_decrypt9wip/aeskeydb.bin $dir_decrypt9/;
-      cp -rR $dep_decrypt9wip/hs-* $dir_decrypt9/;
+      cp -rR $dep_decrypt9/aeskeydb.bin $dir_decrypt9/;
+      cp -rR $dep_decrypt9/hs-* $dir_decrypt9/;
       mv $dir_build/seeddb/seeddb.bin $dir_decrypt9/;
 
     # EmuNAND9
