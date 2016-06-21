@@ -25,7 +25,7 @@
 
     # twl cetk 9.0
       url_n3ds_twl_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000102/cetk;
-      url_n3ds_twl_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000102/00000000;
+      url_o3ds_twl_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000102/00000000;
 
   # retroarch
     url_retroarch=http://buildbot.libretro.com/nightly/nintendo/3ds/$(date +%Y-%m-%d)_RetroArch_3dsx.7z;
@@ -37,7 +37,7 @@
     url_enctitlekeys=https://3ds.titlekeys.com/downloadenc;
 
   # seeddb
-    https://3ds.titlekeys.com/downloadenc;
+    url_seeddb=https://3ds.titlekeys.com/downloadenc;
 
 # Define local dependencies
   dep_dependencies=~/Documents/3ds/dependencies;
@@ -53,7 +53,7 @@
   dep_roms=$dep_dependencies/roms;
 
 # Define build directories
-  dir_src=~/Documents/src;
+  dir_src=~/src;
   dir_build=$dir_src/build;
   dir_out=$dir_src/out;
   dir_cia=$dir_out/cia;
@@ -140,8 +140,8 @@ case $choice in
       mkdir -p $dir_build $dir_out $dir_3ds $dir_cia;
 
     # Copy dependencies
-      cp -rR $dep_distfiles $dir_build/;
-      cp -rR $dep_cia/apps/*.cia $dir_cia/;
+      cp -rR $dep_distfiles/* $dir_build/;
+      cp -rR $dep_cia/*.cia $dir_cia/;
       cp -rR $dep_filer $dir_out/;
       mv $dir_build/freeShop $dir_out/;
       mv $dir_out/freeShop/*.cia $dir_cia/;
