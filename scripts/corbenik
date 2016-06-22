@@ -106,12 +106,12 @@ case $choice in
         # Corbenik
           mkdir -p $dep_distfiles/corbenik/firmware; mkdir -p $dep_distfiles/corbenik/keys;
           cd $dep_distfiles/corbenik/firmware;
-          wget $url_n3ds_firm; mv $dep_distfiles/corbenik/firmware/000000* $dep_distfiles/corbenik/firmware/native-n3ds;
-          wget $url_o3ds_firm; mv $dep_distfiles/corbenik/firmware/000000* $dep_distfiles/corbenik/firmware/native-o3ds;
-          wget $url_n3ds_agb; mv $dep_distfiles/corbenik/firmware/000000* $dep_distfiles//corbenik/firmware/agb-n3ds;
-          wget $url_o3ds_agb; mv $dep_distfiles/corbenik/firmware/000000* $dep_distfiles//corbenik/firmware/agb-o3ds;
-          wget $url_n3ds_twl; mv $dep_distfiles/corbenik/firmware/000000* $dep_distfiles//corbenik/firmware/twl-n3ds;
-          wget $url_o3ds_twl; mv $dep_distfiles/corbenik/firmware/000000* $dep_distfiles//corbenik/firmware/twl-o3ds;
+          wget $url_n3ds_firm; mv $dep_distfiles/corbenik/firmware/000* $dep_distfiles/corbenik/firmware/native-n3ds;
+          wget $url_o3ds_firm; mv $dep_distfiles/corbenik/firmware/000* $dep_distfiles/corbenik/firmware/native-o3ds;
+          wget $url_n3ds_agb; mv $dep_distfiles/corbenik/firmware/000* $dep_distfiles//corbenik/firmware/agb-n3ds;
+          wget $url_o3ds_agb; mv $dep_distfiles/corbenik/firmware/000* $dep_distfiles//corbenik/firmware/agb-o3ds;
+          wget $url_n3ds_twl; mv $dep_distfiles/corbenik/firmware/000* $dep_distfiles//corbenik/firmware/twl-n3ds;
+          wget $url_o3ds_twl; mv $dep_distfiles/corbenik/firmware/000* $dep_distfiles//corbenik/firmware/twl-o3ds;
           cd $dep_distfiles/corbenik/keys;
           wget $url_n3ds_firm_cetk; mv $dep_distfiles/corbenik/keys/cetk $dep_distfiles/corbenik/keys/native.cetk-n3ds;
           wget $url_o3ds_firm_cetk; mv $dep_distfiles/corbenik/keys/cetk $dep_distfiles/corbenik/keys/native.cetk-o3ds;
