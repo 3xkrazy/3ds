@@ -301,7 +301,6 @@ case $choice in
     # Backup filer
       echo "";
       rm -rfv $dep_filer;
-      mkdir -p $dep_filer;
       cp -rRv filer $dep_dependencies/;
   ;;
 
