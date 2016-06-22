@@ -290,8 +290,9 @@ case $choice in
       rm -v corbenik/firmware/agb-n3ds;
       rm -v corbenik/firmware/twl-n3ds;
       rm -v corbenik/keys/native.key-n3ds;
-      rm -v corbenik/keys/agb.cetk-n3ds;
-      rm -v corbenik/keys/twl.cetk-n3ds;
+      rm -v corbenik/keys/agb.key-n3ds
+      rm -v corbenik/keys/twl.key.n3ds;
+      rm -v corbenik/keys/native.cetk-n3ds;
       rm -v corbenik/keys/agb.cetk-n3ds;
       rm -v corbenik/keys/twl.cetk-n3ds;
       mv -v corbenik/firmware/native-o3ds corbenik/firmware/native;
@@ -304,7 +305,7 @@ case $choice in
       mv -v corbenik/keys/agb.cetk-o3ds corbenik/keys/agb.cetk;
       mv -v corbenik/keys/twl.cetk-o3ds corbenik/keys/twl.cetk;
   ;;
-  
+
   F)
     # Backup filer
       echo "";
