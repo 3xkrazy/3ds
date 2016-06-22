@@ -298,6 +298,7 @@ case $choice in
       echo "";
       rm -rfv $dep_filer;
       cp -rRv filer $dep_dependencies/;
+  ;;
 
   R)
     # Backup Retroarch saves
@@ -306,7 +307,8 @@ case $choice in
       mkdir -vp $dep_retroarch/cores;
       cp -rRv retroarch/cores/savefiles $dep_retroarch/cores/;
       cp -rRv retroarch/cores/savestates $dep_retroarch/cores/;
-      
+  ;;
+
   *)
     echo "";
     echo "Invalid choice!";
