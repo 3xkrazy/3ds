@@ -3,27 +3,27 @@
 
 # Define urls
   # Nativefirm, agb, twl, and cetk
-    # firm 11.0
+    # firm 11.0.0
       url_n3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/00000021;
       url_o3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000002/00000052;
 
-    # firm cetk 11.0
+    # firm cetk 11.0.0
       url_n3ds_firm_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/cetk;
       url_o3ds_firm_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000002/cetk;
 
-    # agb 9.0
+    # agb 9.0.0
       url_n3ds_agb=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000202/00000000;
       url_o3ds_agb=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000202/0000000B;
 
-    # agb cetk 9.0
+    # agb cetk 9.0.0
       url_n3ds_agb_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000202/cetk;
       url_o3ds_agb_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000202/cetk;
 
-    # twl 9.0
+    # twl 9.0.0
       url_n3ds_twl=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000102/00000000;
       url_o3ds_twl=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000102/00000016;
 
-    # twl cetk 9.0
+    # twl cetk 9.0.0
       url_n3ds_twl_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000102/cetk;
       url_o3ds_twl_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000102/cetk;
 
@@ -31,7 +31,7 @@
     url_retroarch=http://buildbot.libretro.com/nightly/nintendo/3ds/$(date +%Y-%m-%d)_RetroArch_3dsx.7z;
 
   # freeshop
-    url_freeshop=https://github.com/Cruel/freeShop/releases/download/1.2/freeShop-1.2.cia;
+    url_freeshop=https://github.com/Cruel/freeShop/releases/download/1.2.2/freeShop-1.2.2.cia;
 
   # encTitleKeys
     url_enctitlekeys=https://3ds.titlekeys.com/downloadenc;
@@ -43,6 +43,7 @@
   dep_dependencies=~/Documents/3ds/dependencies;
   dep_distfiles=~/Documents/3ds/distfiles;
   dep_corbenik=$dep_dependencies/corbenik/keys;
+  dep_slot0x11Key96=$dep_dependencies/slotkeybin/slot0x11Key96.bin
   dep_a9lh=$dep_dependencies/a9lh/delebile;
   dep_decrypt9=$dep_dependencies/decrypt9;
   dep_cia=$dep_dependencies/cia/apps;
@@ -77,7 +78,7 @@
   echo "";
   echo "****** Filer/Retroarch ******";
   echo "[F] Backup filer";
-  echo "[R] Backup Retroarch";
+  echo "[R] Backup retroarch";
   echo -n "Your Choice: ";
   read choice;
 
@@ -159,7 +160,7 @@ case $choice in
       mv $dir_build/corbenik/out/arm9loaderhax.bin $dir_out;
       mv $dir_build/corbenik/firmware $dir_corbenik/;
       mv $dir_build/corbenik/keys $dir_corbenik/;
-      cp $dep_corbenik/11.key $dir_corbenik/keys/;
+      cp $dep_slot0x11Key96 $dir_corbenik/keys/11.key;
       cp $dep_corbenik/native.key* $dir_corbenik/keys/;
       cp -rR $dep_locale $dir_corbenik/;
       mkdir -p $dir_chain;
@@ -191,8 +192,7 @@ case $choice in
       make;
       mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_chain/Decrypt9.bin;
       mv $dir_build/Decrypt9WIP/resources/d9logo.bin $dir_decrypt9/;
-      cp -rR $dep_decrypt9/aeskeydb.bin $dir_decrypt9/;
-      cp -rR $dep_decrypt9/hs-* $dir_decrypt9/;
+      cp -rR $dep_decrypt9/* $dir_decrypt9/;
       mv $dir_build/seeddb/seeddb.bin $dir_decrypt9/;
 
     # EmuNAND9
@@ -262,15 +262,10 @@ case $choice in
     # Set SD files to n3ds
       rm -rfv 3ds/arm9loaderhax-o3ds;
       rm -rfv corbenik/chain/ARM9LoaderHax-o3ds.bin;
-      rm -v corbenik/firmware/native-o3ds;
-      rm -v corbenik/firmware/agb-o3ds;
-      rm -v corbenik/firmware/twl-o3ds;
-      rm -v corbenik/keys/native.key-o3ds;
-      rm -v corbenik/keys/agb.key-o3ds;
-      rm -v corbenik/keys/twl.key-o3ds;
-      rm -v corbenik/keys/native.cetk-o3ds;
-      rm -v corbenik/keys/agb.cetk-o3ds;
-      rm -v corbenik/keys/twl.cetk-o3ds;
+      rm -v corbenik/firmware/native-o3ds; rm -v corbenik/firmware/agb-o3ds; rm -v corbenik/firmware/twl-o3ds;
+      rm -v corbenik/keys/native.key-o3ds; rm -v corbenik/keys/agb.key-o3ds; rm -v corbenik/keys/twl.key-o3ds;
+      rm -v corbenik/keys/native.cetk-o3ds; rm -v corbenik/keys/agb.cetk-o3ds; rm -v corbenik/keys/twl.cetk-o3ds;
+      rm -v Decrypt9/fbi-o3ds_usa-v11.0.0.app
       mv -v corbenik/firmware/native-n3ds corbenik/firmware/native;
       mv -v corbenik/firmware/agb-n3ds corbenik/firmware/agb;
       mv -v corbenik/firmware/twl-n3ds corbenik/firmware/twl;
@@ -286,15 +281,10 @@ case $choice in
     # Set SD files to o3ds
       rm -rf 3ds/arm9loaderhax-n3ds;
       rm -rf corbenik/chain/ARM9LoaderHax-n3ds.bin;
-      rm -v corbenik/firmware/native-n3ds;
-      rm -v corbenik/firmware/agb-n3ds;
-      rm -v corbenik/firmware/twl-n3ds;
-      rm -v corbenik/keys/native.key-n3ds;
-      rm -v corbenik/keys/agb.key-n3ds
-      rm -v corbenik/keys/twl.key.n3ds;
-      rm -v corbenik/keys/native.cetk-n3ds;
-      rm -v corbenik/keys/agb.cetk-n3ds;
-      rm -v corbenik/keys/twl.cetk-n3ds;
+      rm -v corbenik/firmware/native-n3ds; rm -v corbenik/firmware/agb-n3ds; rm -v corbenik/firmware/twl-n3ds;
+      rm -v corbenik/keys/native.key-n3ds; rm -v corbenik/keys/agb.key-n3ds rm -v corbenik/keys/twl.key.n3ds;
+      rm -v corbenik/keys/native.cetk-n3ds; rm -v corbenik/keys/agb.cetk-n3ds; rm -v corbenik/keys/twl.cetk-n3ds;
+      rm -v Decrypt9/fbi-n3ds_jpn-v11.0.0.app
       mv -v corbenik/firmware/native-o3ds corbenik/firmware/native;
       mv -v corbenik/firmware/agb-o3ds corbenik/firmware/agb;
       mv -v corbenik/firmware/twl-o3ds corbenik/firmware/twl;
