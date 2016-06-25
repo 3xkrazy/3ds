@@ -47,7 +47,7 @@ dep_dependencies=~/Documents/3ds/dependencies;
 dep_distfiles=~/Documents/3ds/distfiles;
 
 #cfw stuff
-dep_keys=$dep_dependencies/keys;
+dep_keys=$dep_dependencies/corbenik/keys;
 dep_locale=$dep_dependencies/corbenik/locale;
 dep_slot0x11Key96=$dep_dependencies/slotkeybin/slot0x11Key96.bin
 dep_a9lh=$dep_dependencies/a9lh/delebile;
