@@ -256,7 +256,7 @@ case $choice in
 		wget $url_n3ds_agb; mv $dep_distfiles/firmware/000* $dep_distfiles/firmware/agb-n3ds;
 		wget $url_o3ds_agb; mv $dep_distfiles/firmware/000* $dep_distfiles/firmware/agb-o3ds;
 		wget $url_n3ds_twl; mv $dep_distfiles/firmware/000* $dep_distfiles/firmware/twl-n3ds;
-		wget $url_o3ds_twl; mv $dep_distfile/firmware/000* $dep_distfiles/firmware/twl-o3ds;
+		wget $url_o3ds_twl; mv $dep_distfiles/firmware/000* $dep_distfiles/firmware/twl-o3ds;
 		cd $dep_distfiles/keys;
 		wget $url_n3ds_firm_cetk; mv $dep_distfiles/keys/cetk $dep_distfiles/keys/native.cetk-n3ds;
 		wget $url_o3ds_firm_cetk; mv $dep_distfiles/keys/cetk $dep_distfiles/keys/native.cetk-o3ds;
