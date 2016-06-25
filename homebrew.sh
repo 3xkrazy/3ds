@@ -434,7 +434,7 @@ case $choice in
 	rm -rf 3ds/arm9loaderhax-n3ds;
 	rm -rf corbenik/chain/ARM9LoaderHax-n3ds.bin;
 	rm -v corbenik/firmware/native-n3ds; rm -v corbenik/firmware/agb-n3ds; rm -v corbenik/firmware/twl-n3ds;
-	rm -v corbenik/keys/native.key-n3ds; rm -v corbenik/keys/agb.key-n3ds; rm -v corbenik/keys/twl.key.n3ds;
+	rm -v corbenik/keys/native.key-n3ds; rm -v corbenik/keys/agb.key-n3ds; rm -v corbenik/keys/twl.key-n3ds;
 	rm -v corbenik/keys/native.cetk-n3ds; rm -v corbenik/keys/agb.cetk-n3ds; rm -v corbenik/keys/twl.cetk-n3ds;
 	rm -v Decrypt9/fbi-n3ds_jpn-v11.0.0.app
 	mv -v corbenik/firmware/native-o3ds corbenik/firmware/native;
