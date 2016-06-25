@@ -2,7 +2,6 @@
 # setupscripts
 
 dir_bin=~/.bin/
-
 homebrew_url=https://raw.githubusercontent.com/3xkrazy/3ds/master/scripts/homebrew.sh;
 nandtool_url=https://raw.githubusercontent.com/3xkrazy/3ds/master/scripts/nandtool.sh;
 funkeycia_url=https://raw.githubusercontent.com/3xkrazy/3ds/master/scripts/funkeycia.sh;
