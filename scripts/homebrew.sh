@@ -77,7 +77,7 @@
   echo "*** Filer/Retroarch";
   echo "[F] Backup filer";
   echo "[R] Backup retroarch";
-  3dho "";
+  echo "";
   echo "*** Nand options";
   echo "[Y] Backup 3DS nand";
   echo "[Z] Restore 3DS nand";
@@ -119,54 +119,58 @@
             exit 0;
           ;;
           2)
-            rm -rf $dep_distfiles/;
+            rm -rf $dep_distfiles/arm8loaderhax;
             git clone --recursive https://github.com/delebile/arm9loaderhax.git;
             exit 0;
           ;;
           3)
-            rm -rf $dep_distfiles/;
+            rm -rf $dep_distfiles/Decrypt9WIP;
             git clone --recursive https://github.com/d0k3/Decrypt9WIP.git;
             exit 0;
           ;;
           4)
-            rm -rf $dep_distfiles/;
+            rm -rf $dep_distfiles/EmuNAND9;
             git clone --recursive https://github.com/d0k3/EmuNAND9.git;
             exit 0;
           ;;
           5)
-            rm -rf $dep_distfiles/;
+            rm -rf $dep_distfiles/GodMode9;
             git clone --recursive https://github.com/d0k3/GodMode9.git;
             exit 0;
           ;;
           6)
-            rm -rf $dep_distfiles/;
+            rm -rf $dep_distfiles/uncart;
             git clone --recursive https://github.com/citra-emu/uncart;
             exit 0;
           ;;
           7)
-            rm -rf $dep_distfiles/;
+            rm -rf $dep_distfiles/bannertool;
+            rm -rf $dep_distfiles/FBI;
             git clone --recursive https://github.com/Steveice10/bannertool.git;
             git clone --recursive https://github.com/Steveice10/FBI.git;
             exit 0;
           ;;
           8)
-            rm -rf $dep_distfiles/;
+            rm -rf $dep_distfiles/ftpd;
             git clone --recursive https://github.com/mtheall/ftpd;
             exit 0;
           ;;
           9)
+            rm -rf $dep_distfiles/hblauncher_loader;
             git clone --recursive https://github.com/yellows8/hblauncher_loader.git;
-            rm -rf $dep_distfiles/;
             exit 0;
           ;;
           10)
-            rm -rf $dep_distfiles/;
+            #rm -rf $dep_distfiles/;
+            exit 0;
           ;;
           Q)
-            rm -rf $dep_distfiles/;
+            #rm -rf $dep_distfiles/;
+            exit 0;
           ;;
           T)
-            rm -rf $dep_distfiles/;
+            #rm -rf $dep_distfiles/;
+            exit 0;
           ;;
           A)
             # Clean distfiles
