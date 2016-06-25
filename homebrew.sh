@@ -50,6 +50,11 @@ dep_distfiles=~/Documents/3ds/distfiles;
 dep_keys=$dep_dependencies/corbenik/keys;
 dep_locale=$dep_dependencies/corbenik/locale;
 dep_slot0x11Key96=$dep_dependencies/slotkeybin/slot0x11Key96.bin
+dep_a9lh=$dep_dependencies/a9lh/delebile;
+dep_decrypt9=$dep_dependencies/decrypt9;
+dep_cia=$dep_dependencies/cia/apps;
+dep_misc=$dep_dependencies/misc;
+dep_nand=$dep_dependencies/nand;
 
 #filer
 dep_filer_archive=$dep_dependencies/filer_archive;
@@ -59,15 +64,6 @@ dep_filer=$dep_filer_archive/filer;
 dep_retroarch_archive=$dep_dependencies/retroarch_archive;
 dep_retroarch=$dep_retroarch_archive/retroarch;
 dep_roms=$dep_dependencies/roms;
-
-#nand
-dep_nand=$dep_dependencies/nand;
-
-#other
-dep_a9lh=$dep_dependencies/a9lh/delebile;
-dep_decrypt9=$dep_dependencies/decrypt9;
-dep_cia=$dep_dependencies/cia/apps;
-dep_misc=$dep_dependencies/misc;
 
 #funkeycia
 dep_bin=~/.bin;
@@ -147,9 +143,11 @@ case $choice in
 	echo "";
 	echo "[A] : Update all";
 	echo "";
-	echo "[E] - Exit script";
+	echo "[E] : Exit script";
+	echo "";
 	echo -n "Select your choice: ";
 	read homebrew;
+	echo "";
         cd $dep_distfiles;
 	case $homebrew in
 		1) #corbenik
@@ -309,7 +307,7 @@ case $choice in
 	mv $dir_build/freeShop $dir_out/;
 	mv $dir_out/freeShop/*.cia $dir_cia/;
 
-	#Corbenik
+	#corbenik
 	cd $dir_build/corbenik;
 	make clean;
 	make full;
@@ -477,9 +475,9 @@ case $choice in
 	echo -n "Enter nand backup name: ";
 	read nand;
 	echo "";
-	echo Backing up 3DS nand file: $nand;
+	echo Backing up 3DS nand file: $nand
 	sudo dd if=$block_device of=$dep_nand/$nand bs=1M;
-	echo Backup completed!
+	echo "Backup completed!"";
 	;;
 
 	Z) #restore 3ds nand
@@ -492,14 +490,14 @@ case $choice in
 	echo -n "block device: ";
 	read block_device;
 	echo "";
-	echo "Nand list:"
+	echo "Nand list:";
 	for entry in "$dep_nand"/*
 	do
 		echo "$entry";
 	done
 	echo "";
 	echo -n "Enter nand backup name: ";
-	read nand
+	read nand;
 		if [ ! -f $dep_nand/$nand ]; then
 			echo "";
 			echo $nand does not exist!
