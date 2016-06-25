@@ -2,7 +2,7 @@
 # corbenik
 
 # Define urls
-  # Nativefirm, agb, twl, and cetk
+  # nativefirm, agb, twl, and cetk
     # firm 11.0.0
       url_n3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/00000021;
       url_o3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000002/00000052;
@@ -43,14 +43,16 @@
   dep_dependencies=~/Documents/3ds/dependencies;
   dep_distfiles=~/Documents/3ds/distfiles;
   dep_corbenik=$dep_dependencies/corbenik/keys;
+  dep_locale=$dep_dependencies/corbenik/locale;
   dep_slot0x11Key96=$dep_dependencies/slotkeybin/slot0x11Key96.bin
   dep_a9lh=$dep_dependencies/a9lh/delebile;
   dep_decrypt9=$dep_dependencies/decrypt9;
   dep_cia=$dep_dependencies/cia/apps;
-  dep_filer=$dep_dependencies/filer;
+  dep_filer_archive=$dep_dependencies/filer_archive;
+  dep_filer=$dep_filer_archive/filer;
   dep_misc=$dep_dependencies/misc;
-  dep_locale=$dep_dependencies/corbenik/locale;
-  dep_retroarch=$dep_dependencies/retroarch;
+  dep_retroarch_archive=$dep_dependencies/retroarch_archive;
+  dep_retroarch=$dep_retroarch_archive/retroarch;
   dep_roms=$dep_dependencies/roms;
 
 # Define build directories
@@ -90,7 +92,7 @@ case $choice in
       cd $dep_distfiles;
       echo "";
 
-      # Fetch github files
+      # Fetch github projects
         echo "Fetching Homebrew...";
         git clone --recursive https://github.com/chaoskagami/corbenik.git;
         git clone --recursive https://github.com/delebile/arm9loaderhax.git;
@@ -148,6 +150,8 @@ case $choice in
       cp -rR $dep_distfiles/* $dir_build/;
       cp -rR $dep_cia/*.cia $dir_cia/;
       cp -rR $dep_filer $dir_out/;
+      cp -rR $dep_retroarch $dir_out/;
+      cp -rR $dep_roms $dir_out/;
       mv $dir_build/freeShop $dir_out/;
       mv $dir_out/freeShop/*.cia $dir_cia/;
 
@@ -250,8 +254,6 @@ case $choice in
       mv $dir_build/Retroarch/3ds/fb_alpha_cps2_libretro $dir_3ds/;
       mv $dir_build/Retroarch/3ds/fb_alpha_neo_libretro $dir_3ds/;
       mv $dir_build/Retroarch/3ds/pocketsnes_libretro $dir_3ds/;
-      cp -rR $dep_retroarch $dir_out/;
-      cp -rR $dep_roms $dir_out/;
 
     # Cleanup
       cd ~/src;
@@ -299,14 +301,14 @@ case $choice in
   F)
     # Backup filer
       echo "";
-      rm -rfv $dep_filer;
-      cp -rRv filer $dep_dependencies/;
+      mv -v $dep_filer $dep_filer_archive/filer-$(date +%Y%m%d);
+      cp -rRv filer $dep_filer_archive/;
   ;;
 
   R)
     # Backup Retroarch saves
       echo "";
-      rm -rfv $dep_retroarch;
+      mv -v $dep_retroarch $dep_retroarch_archive/retroarch-$(date +%Y%m%d);
       mkdir -vp $dep_retroarch/cores;
       cp -rRv retroarch/cores/savefiles $dep_retroarch/cores/;
       cp -rRv retroarch/cores/savestates $dep_retroarch/cores/;
