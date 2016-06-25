@@ -16,27 +16,27 @@ url_enctitlekeys=https://3ds.titlekeys.com/downloadenc;
 #seeddb
 url_seeddb=https://3ds.titlekeys.com/seeddb;
 
-#firm 11.0.0
-url_n3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/00000021;
-url_o3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000002/00000052;
+#nativefirm
+url_n3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/00000021; #11.0.0
+url_o3ds_firm=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000002/00000052; #11.0.0
 
-#firm cetk 11.0.0
+#nativefirm cetk
 url_n3ds_firm_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000002/cetk;
 url_o3ds_firm_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000002/cetk;
 
-#agb 9.0.0
-url_n3ds_agb=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000202/00000000;
-url_o3ds_agb=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000202/0000000B;
+#agb
+url_n3ds_agb=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000202/00000000; #9.0.0
+url_o3ds_agb=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000202/0000000B; #6.0.0
 
-#agb cetk 9.0.0
+#agb cetk
 url_n3ds_agb_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000202/cetk;
 url_o3ds_agb_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000202/cetk;
 
-#twl 9.0.0
-url_n3ds_twl=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000102/00000000;
-url_o3ds_twl=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000102/00000016;
+#twl
+url_n3ds_twl=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000102/00000000; #9.0.0
+url_o3ds_twl=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000102/00000016; #6.2.0
 
-#twl cetk 9.0.0
+#twl cetk
 url_n3ds_twl_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013820000102/cetk;
 url_o3ds_twl_cetk=http://nus.cdn.c.shop.nintendowifi.net/ccs/download/0004013800000102/cetk;
 
