@@ -112,7 +112,7 @@
         echo -n "  Select your choice: ";
         read homebrew;
         cd $dep_distfiles;
-        case $homebrew in;
+        case $homebrew in
           1)
             rm -rf $dep_distfiles/corbenik;
             git clone --recursive https://github.com/chaoskagami/corbenik.git;
