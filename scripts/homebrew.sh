@@ -227,7 +227,8 @@
             echo "Invalid choice!";
             exit 1;
           ;;
-    esac
+        esac
+        exit 0;
     B)
       # Clean tmp
         rm -rf $dir_build $dir_out $dir_tmp/sdmc*;
@@ -395,3 +396,4 @@
       exit 1;
     ;;
   esac
+exit 0;
