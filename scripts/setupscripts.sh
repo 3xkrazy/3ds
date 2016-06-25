@@ -3,7 +3,7 @@
 
 dir_bin=~/.bin/
 
-corbenik_url=https://raw.githubusercontent.com/3xkrazy/3ds/master/scripts/homebrew.sh;
+homebrew_url=https://raw.githubusercontent.com/3xkrazy/3ds/master/scripts/homebrew.sh;
 nandtool_url=https://raw.githubusercontent.com/3xkrazy/3ds/master/scripts/nandtool.sh;
 funkeycia_url=https://raw.githubusercontent.com/3xkrazy/3ds/master/scripts/funkeycia.sh;
 funkeycia=https://raw.githubusercontent.com/llakssz/FunKeyCIA/master/FunKeyCIA.py;
