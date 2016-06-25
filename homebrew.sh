@@ -477,7 +477,7 @@ case $choice in
 	echo "";
 	echo Backing up 3DS nand file: $nand
 	sudo dd if=$block_device of=$dep_nand/$nand bs=1M;
-	echo "Backup completed!"";
+	echo "Backup completed!";
 	;;
 
 	Z) #restore 3ds nand
