@@ -87,7 +87,7 @@
   echo -n "Your Choice: ";
   read choice;
     case $choice in
-     U)
+      U)
       # Update homebrew submenu
         mkdir -p $dep_distfiles;
         echo "";
@@ -227,6 +227,7 @@
             echo "Invalid choice!";
             exit 1;
           ;;
+    esac
     B)
       # Clean tmp
         rm -rf $dir_build $dir_out $dir_tmp/sdmc*;
