@@ -47,7 +47,7 @@ dep_dependencies=~/Documents/3ds/dependencies;
 dep_distfiles=~/Documents/3ds/distfiles;
 
 #cfw stuff
-dep_keys=$dep_dependencies/corbenik/keys;
+dep_keys=$dep_dependencies/keys;
 dep_locale=$dep_dependencies/corbenik/locale;
 dep_slot0x11Key96=$dep_dependencies/slotkeybin/slot0x11Key96.bin
 dep_a9lh=$dep_dependencies/a9lh/delebile;
@@ -314,8 +314,8 @@ case $choice in
 	rm -rf $dir_build/corbenik/out/corbenik/locale;
 	mv $dir_build/corbenik/out/corbenik $dir_out;
 	mv $dir_build/corbenik/out/arm9loaderhax.bin $dir_out;
-	mv $dir_build/$dir_build/firmware $dir_corbenik/;
-	mv $dir_build/$dir_build/keys $dir_corbenik/;
+	mv $dir_build/firmware $dir_corbenik/;
+	mv $dir_build/keys $dir_corbenik/;
 	cp $dep_slot0x11Key96 $dir_corbenik/keys/11.key;
 	cp $dep_keys/*.key* $dir_corbenik/keys/;
 	cp -rR $dep_locale $dir_corbenik/;
