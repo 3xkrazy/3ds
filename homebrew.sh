@@ -131,11 +131,10 @@ case $choice in
 	echo "[3] : Decrypt9WIP";
 	echo "[4] : EmuNAND9";
 	echo "[5] : GodMode9";
-	echo "[6] : Uncart";
-	echo "[7] : FBI";
-	echo "[8] : ftpd";
-	echo "[9] : hblauncher_loader";
-	echo "[10]: retroarch";
+	echo "[6] : FBI";
+	echo "[7] : ftpd";
+	echo "[8] : hblauncher_loader";
+	echo "[9] : retroarch";
 	echo "";
 	echo "*** Update misc";
 	echo "[Q] : encTitleKeys, and seeddb.bin";
@@ -175,28 +174,23 @@ case $choice in
 		git clone --recursive https://github.com/d0k3/GodMode9.git;
 		;;
 
-		6) #uncart
-		rm -rf $dep_distfiles/uncart;
-		git clone --recursive https://github.com/citra-emu/uncart;
-		;;
-
-		7) #FBI
+		6) #FBI
 		rm -rf $dep_distfiles/bannertool; rm -rf $dep_distfiles/FBI;
 		git clone --recursive https://github.com/Steveice10/bannertool.git;
 		git clone --recursive https://github.com/Steveice10/FBI.git;
 		;;
 
-		8) #ftpd
+		7) #ftpd
 		rm -rf $dep_distfiles/ftpd;
 		git clone --recursive https://github.com/mtheall/ftpd;
 		;;
 
-		9) #hblauncher_loader
+		8) #hblauncher_loader
 		rm -rf $dep_distfiles/hblauncher_loader;
 		git clone --recursive https://github.com/yellows8/hblauncher_loader.git;
 		;;
 
-		10) #retroarch
+		9) #retroarch
 		rm -rf $dep_distfiles/Retroarch;
 		mkdir -p $dep_distfiles/Retroarch; cd $dep_distfiles/Retroarch;
 		wget $url_retroarch;
@@ -242,7 +236,6 @@ case $choice in
 		git clone --recursive https://github.com/d0k3/Decrypt9WIP.git;
 		git clone --recursive https://github.com/d0k3/EmuNAND9.git;
 		git clone --recursive https://github.com/d0k3/GodMode9.git;
-		git clone --recursive https://github.com/citra-emu/uncart;
 		git clone --recursive https://github.com/Steveice10/bannertool.git;
 		git clone --recursive https://github.com/Steveice10/FBI.git;
 		git clone --recursive https://github.com/mtheall/ftpd;
@@ -364,12 +357,6 @@ case $choice in
 	make clean;
 	make;
 	mv -v $dir_build/GodMode9/output/GodMode9.bin $dir_chain/GodMode9.bin;
-
-	#Uncart
-	cd $dir_build/uncart;
-	make clean;
-	make a9lh;
-	mv -v $dir_build/uncart/uncart_arm9loaderhax.bin $dir_chain/Uncart.bin;
 
 	#bannertool
 	cd $dir_build/bannertool;
