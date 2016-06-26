@@ -302,6 +302,7 @@ case $choice in
 	cp -rR $dep_distfiles/* $dir_build/;
 	cp -rR $dep_cia/*.cia $dir_cia/;
 	cp -rR $dep_filer $dir_out/;
+	cp -rR $dep_dependencies/dspdump/* $dir_3ds/;
 	cp -rR $dep_retroarch $dir_out/;
 	cp -rR $dep_roms $dir_out/;
 	mv $dir_build/freeShop $dir_out/;
@@ -419,7 +420,8 @@ case $choice in
 	rm -v corbenik/firmware/native-o3ds; rm -v corbenik/firmware/agb-o3ds; rm -v corbenik/firmware/twl-o3ds;
 	rm -v corbenik/keys/native.key-o3ds; rm -v corbenik/keys/agb.key-o3ds; rm -v corbenik/keys/twl.key-o3ds;
 	rm -v corbenik/keys/native.cetk-o3ds; rm -v corbenik/keys/agb.cetk-o3ds; rm -v corbenik/keys/twl.cetk-o3ds;
-	rm -v Decrypt9/fbi-o3ds_usa-v11.0.0.app
+	rm -v Decrypt9/fbi-o3ds_usa-v11.0.0.app;
+	rm -v 3ds/dspfirm.cdc-o3ds;
 	rm -v 3ds/*OLD*.bin;
 	rm -v 3ds/*NEW*USA.bin;
 	mv -v corbenik/firmware/native-n3ds corbenik/firmware/native;
@@ -431,6 +433,7 @@ case $choice in
 	mv -v corbenik/keys/native.cetk-n3ds corbenik/keys/native.cetk;
 	mv -v corbenik/keys/agb.cetk-n3ds corbenik/keys/agb.cetk;
 	mv -v corbenik/keys/twl.cetk-n3ds corbenik/keys/twl.cetk;
+	mv -v 3ds/dspfirm.cdc-n3ds 3ds/dspfirm.cdc;
 	;;
 
 	O) #set SD files to o3ds
@@ -439,7 +442,8 @@ case $choice in
 	rm -v corbenik/firmware/native-n3ds; rm -v corbenik/firmware/agb-n3ds; rm -v corbenik/firmware/twl-n3ds;
 	rm -v corbenik/keys/native.key-n3ds; rm -v corbenik/keys/agb.key-n3ds; rm -v corbenik/keys/twl.key-n3ds;
 	rm -v corbenik/keys/native.cetk-n3ds; rm -v corbenik/keys/agb.cetk-n3ds; rm -v corbenik/keys/twl.cetk-n3ds;
-	rm -v Decrypt9/fbi-n3ds_jpn-v11.0.0.app
+	rm -v Decrypt9/fbi-n3ds_jpn-v11.0.0.app;
+	rm -v 3ds/dspfirm.cdc-n3ds;
 	rm -v 3ds/*NEW*.bin;
 	mv -v corbenik/firmware/native-o3ds corbenik/firmware/native;
 	mv -v corbenik/firmware/agb-o3ds corbenik/firmware/agb;
@@ -450,6 +454,7 @@ case $choice in
 	mv -v corbenik/keys/native.cetk-o3ds corbenik/keys/native.cetk;
 	mv -v corbenik/keys/agb.cetk-o3ds corbenik/keys/agb.cetk;
 	mv -v corbenik/keys/twl.cetk-o3ds corbenik/keys/twl.cetk;
+	mv -v 3ds/dspfirm.cdc-o3ds 3ds/dspfirm.cdc;
 	;;
 
 	F) #backup filer
