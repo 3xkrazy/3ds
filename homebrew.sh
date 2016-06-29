@@ -341,7 +341,7 @@ case $choice in
 	cd $dir_build/Decrypt9WIP; mkdir -p $dir_d9game $dir_decrypt9;
 	make clean;
 	make;
-	mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_chain/Decrypt9.bin;
+	mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_chain/Decrypt9-$(date +%Y%m%d).bin;
 	mv $dir_build/Decrypt9WIP/resources/d9logo.bin $dir_decrypt9/;
 	cp -rR $dep_decrypt9/* $dir_decrypt9/;
 	mv $dir_build/seeddb/seeddb.bin $dir_decrypt9/;
@@ -350,13 +350,13 @@ case $choice in
 	cd $dir_build/EmuNAND9; mkdir -p $dir_emunand9;
 	make clean;
 	make;
-	mv -v $dir_build/EmuNAND9/output/EmuNAND9.bin $dir_chain/EmuNAND9.bin;
+	mv -v $dir_build/EmuNAND9/output/EmuNAND9.bin $dir_chain/EmuNAND9-$(date +%Y%m%d).bin;
 
 	#GodMode9
 	cd $dir_build/GodMode9;
 	make clean;
 	make;
-	mv -v $dir_build/GodMode9/output/GodMode9.bin $dir_chain/GodMode9.bin;
+	mv -v $dir_build/GodMode9/output/GodMode9.bin $dir_chain/GodMode9-$(date +%Y%m%d).bin;
 
 	#bannertool
 	cd $dir_build/bannertool;
@@ -404,9 +404,8 @@ case $choice in
 	N) #set SD files to n3ds
 	rm -rfv 3ds/arm9loaderhax-o3ds;
 	rm -rfv corbenik/chain/ARM9LoaderHax-o3ds.bin;
-	rm -v corbenik/firmware/native-o3ds; rm -v corbenik/firmware/agb-o3ds; rm -v corbenik/firmware/twl-o3ds;
-	rm -v corbenik/keys/native.key-o3ds; rm -v corbenik/keys/agb.key-o3ds; rm -v corbenik/keys/twl.key-o3ds;
-	rm -v corbenik/keys/native.cetk-o3ds; rm -v corbenik/keys/agb.cetk-o3ds; rm -v corbenik/keys/twl.cetk-o3ds;
+	rm -v corbenik/firmware/*-o3ds;
+	rm -v corbenik/keys/*-o3ds;
 	rm -v Decrypt9/fbi-o3ds_usa-v11.0.0.app;
 	rm -v 3ds/dspfirm.cdc-o3ds;
 	rm -v 3ds/*OLD*.bin;
@@ -426,9 +425,8 @@ case $choice in
 	O) #set SD files to o3ds
 	rm -rf 3ds/arm9loaderhax-n3ds;
 	rm -rf corbenik/chain/ARM9LoaderHax-n3ds.bin;
-	rm -v corbenik/firmware/native-n3ds; rm -v corbenik/firmware/agb-n3ds; rm -v corbenik/firmware/twl-n3ds;
-	rm -v corbenik/keys/native.key-n3ds; rm -v corbenik/keys/agb.key-n3ds; rm -v corbenik/keys/twl.key-n3ds;
-	rm -v corbenik/keys/native.cetk-n3ds; rm -v corbenik/keys/agb.cetk-n3ds; rm -v corbenik/keys/twl.cetk-n3ds;
+	rm -v corbenik/firmware/*-n3ds;
+	rm -v corbenik/keys/*-n3ds;
 	rm -v Decrypt9/fbi-n3ds_jpn-v11.0.0.app;
 	rm -v 3ds/dspfirm.cdc-n3ds;
 	rm -v 3ds/*NEW*.bin;
@@ -462,7 +460,6 @@ case $choice in
 	mkdir -p $dep_nand;
 	echo "";
 	echo "Set block device";
-	echo "";
 	echo "	example: /dev/sdc";
 	echo "";
 	echo -n "block device: ";
@@ -480,8 +477,7 @@ case $choice in
 	mkdir -p $dep_nand;
 	echo "";
 	echo "Set block device";
-	echo "";
-	echo "  example: /dev/sdc";
+	echo "example: /dev/sdc";
 	echo "";
 	echo -n "block device: ";
 	read block_device;
