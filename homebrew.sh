@@ -402,14 +402,11 @@ case $choice in
 	;;
 
 	N) #set SD files to n3ds
-	rm -rfv 3ds/arm9loaderhax-o3ds;
+	rm -rfv 3ds/*-o3ds;
 	rm -rfv corbenik/chain/ARM9LoaderHax-o3ds.bin;
 	rm -v corbenik/firmware/*-o3ds;
 	rm -v corbenik/keys/*-o3ds;
 	rm -v Decrypt9/fbi-o3ds_usa-v11.0.0.app;
-	rm -v 3ds/dspfirm.cdc-o3ds;
-	rm -v 3ds/*OLD*.bin;
-	rm -v 3ds/*NEW*USA.bin;
 	mv -v corbenik/firmware/native-n3ds corbenik/firmware/native;
 	mv -v corbenik/firmware/agb-n3ds corbenik/firmware/agb;
 	mv -v corbenik/firmware/twl-n3ds corbenik/firmware/twl;
@@ -423,13 +420,11 @@ case $choice in
 	;;
 
 	O) #set SD files to o3ds
-	rm -rf 3ds/arm9loaderhax-n3ds;
+	rm -rf 3ds/*-n3ds;
 	rm -rf corbenik/chain/ARM9LoaderHax-n3ds.bin;
 	rm -v corbenik/firmware/*-n3ds;
 	rm -v corbenik/keys/*-n3ds;
 	rm -v Decrypt9/fbi-n3ds_jpn-v11.0.0.app;
-	rm -v 3ds/dspfirm.cdc-n3ds;
-	rm -v 3ds/*NEW*.bin;
 	mv -v corbenik/firmware/native-o3ds corbenik/firmware/native;
 	mv -v corbenik/firmware/agb-o3ds corbenik/firmware/agb;
 	mv -v corbenik/firmware/twl-o3ds corbenik/firmware/twl;
