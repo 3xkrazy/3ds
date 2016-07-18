@@ -197,30 +197,27 @@ case $choice in
 
 		Q) #freeShop and seeddb.bin
 		rm -rf $dep_distfiles/seeddb; rm -rf $dep_distfiles/freeShop;
-		mkdir -p $dep_distfiles/seeddb; cd $dep_distfiles/seeddb;
-                wget $url_seeddb; mv $dep_distfiles/seeddb/seeddb $dep_distfiles/seeddb/seeddb.bin;
-		mkdir -p $dep_distfiles/freeShop; cd $dep_distfiles/freeShop;
-		wget $url_freeshop; wget $url_enctitlekeys;
-		mv $dep_distfiles/freeShop/downloadenc $dep_distfiles/freeShop/encTitleKeys.bin;
+		mkdir -p $dep_distfiles/seeddb;
+                wget $url_seeddb -O $dep_distfiles/seeddb/seeddb.bin;
+		mkdir -p $dep_distfiles/freeShop;
+		wget $url_freeshop; wget $url_enctitlekeys -O $dep_distfiles/freeShop/encTitleKeys.bin;
 		;;
 
 		T) #misc
 		rm -rf $dep_distfiles/firmware; rm -rf $dep_distfiles/keys;
 		mkdir -p $dep_distfiles/firmware; mkdir -p $dep_distfiles/keys;
-		cd $dep_distfiles/firmware;
-		wget $url_n3ds_firm; mv $dep_distfiles/firmware/000* $dep_distfiles/firmware/native-n3ds;
-		wget $url_o3ds_firm; mv $dep_distfiles/firmware/000* $dep_distfiles/firmware/native-o3ds;
-		wget $url_n3ds_agb; mv $dep_distfiles/firmware/000* $dep_distfiles/firmware/agb-n3ds;
-		wget $url_o3ds_agb; mv $dep_distfiles/firmware/000* $dep_distfiles/firmware/agb-o3ds;
-		wget $url_n3ds_twl; mv $dep_distfiles/firmware/000* $dep_distfiles/firmware/twl-n3ds;
-		wget $url_o3ds_twl; mv $dep_distfiles/firmware/000* $dep_distfiles/firmware/twl-o3ds;
-		cd $dep_distfiles/keys;
-		wget $url_n3ds_firm_cetk; mv $dep_distfiles/keys/cetk $dep_distfiles/keys/native.cetk-n3ds;
-		wget $url_o3ds_firm_cetk; mv $dep_distfiles/keys/cetk $dep_distfiles/keys/native.cetk-o3ds;
-		wget $url_n3ds_agb_cetk; mv $dep_distfiles/keys/cetk $dep_distfiles/keys/agb.cetk-n3ds;
-		wget $url_o3ds_agb_cetk; mv $dep_distfiles/keys/cetk $dep_distfiles/keys/agb.cetk-o3ds;
-		wget $url_n3ds_twl_cetk; mv $dep_distfiles/keys/cetk $dep_distfiles/keys/twl.cetk-n3ds;
-		wget $url_o3ds_twl_cetk; mv $dep_distfiles/keys/cetk $dep_distfiles/keys/twl.cetk-o3ds;
+		wget $url_n3ds_firm -O $dep_distfiles/firmware/native-n3ds;
+		wget $url_o3ds_firm -O $dep_distfiles/firmware/native-o3ds;
+		wget $url_n3ds_agb -O $dep_distfiles/firmware/agb-n3ds;
+		wget $url_o3ds_agb -O $dep_distfiles/firmware/agb-o3ds;
+		wget $url_n3ds_twl -O $dep_distfiles/firmware/twl-n3ds;
+		wget $url_o3ds_twl -O $dep_distfiles/firmware/twl-o3ds;
+		wget $url_n3ds_firm_cetk -O $dep_distfiles/keys/native.cetk-n3ds;
+		wget $url_o3ds_firm_cetk -O $dep_distfiles/keys/native.cetk-o3ds;
+		wget $url_n3ds_agb_cetk -O $dep_distfiles/keys/agb.cetk-n3ds;
+		wget $url_o3ds_agb_cetk -O $dep_distfiles/keys/agb.cetk-o3ds;
+		wget $url_n3ds_twl_cetk -O $dep_distfiles/keys/twl.cetk-n3ds;
+		wget $url_o3ds_twl_cetk -O $dep_distfiles/keys/twl.cetk-o3ds;
 		;;
 
 		A) #update all homebrew
@@ -242,34 +239,29 @@ case $choice in
 
 		#fetch firmware
 		mkdir -p $dep_distfiles/firmware; mkdir -p $dep_distfiles/keys;
-		cd $dep_distfiles/firmware;
-		wget $url_n3ds_firm; mv $dep_distfiles/firmware/000* $dep_distfiles/firmware/native-n3ds;
-		wget $url_o3ds_firm; mv $dep_distfiles/firmware/000* $dep_distfiles/firmware/native-o3ds;
-		wget $url_n3ds_agb; mv $dep_distfiles/firmware/000* $dep_distfiles/firmware/agb-n3ds;
-		wget $url_o3ds_agb; mv $dep_distfiles/firmware/000* $dep_distfiles/firmware/agb-o3ds;
-		wget $url_n3ds_twl; mv $dep_distfiles/firmware/000* $dep_distfiles/firmware/twl-n3ds;
-		wget $url_o3ds_twl; mv $dep_distfiles/firmware/000* $dep_distfiles/firmware/twl-o3ds;
-		cd $dep_distfiles/keys;
-		wget $url_n3ds_firm_cetk; mv $dep_distfiles/keys/cetk $dep_distfiles/keys/native.cetk-n3ds;
-		wget $url_o3ds_firm_cetk; mv $dep_distfiles/keys/cetk $dep_distfiles/keys/native.cetk-o3ds;
-		wget $url_n3ds_agb_cetk; mv $dep_distfiles/keys/cetk $dep_distfiles/keys/agb.cetk-n3ds;
-		wget $url_o3ds_agb_cetk; mv $dep_distfiles/keys/cetk $dep_distfiles/keys/agb.cetk-o3ds;
-		wget $url_n3ds_twl_cetk; mv $dep_distfiles/keys/cetk $dep_distfiles/keys/twl.cetk-n3ds;
-		wget $url_o3ds_twl_cetk; mv $dep_distfiles/keys/cetk $dep_distfiles/keys/twl.cetk-o3ds;
+		mkdir -p $dep_distfiles/firmware; mkdir -p $dep_distfiles/keys;
+		wget $url_n3ds_firm -O $dep_distfiles/firmware/native-n3ds;
+		wget $url_o3ds_firm -O $dep_distfiles/firmware/native-o3ds;
+		wget $url_n3ds_agb -O $dep_distfiles/firmware/agb-n3ds;
+		wget $url_o3ds_agb -O $dep_distfiles/firmware/agb-o3ds;
+		wget $url_n3ds_twl -O $dep_distfiles/firmware/twl-n3ds;
+		wget $url_o3ds_twl -O $dep_distfiles/firmware/twl-o3ds;
+		wget $url_n3ds_firm_cetk -O $dep_distfiles/keys/native.cetk-n3ds;
+		wget $url_o3ds_firm_cetk -O $dep_distfiles/keys/native.cetk-o3ds;
+		wget $url_n3ds_agb_cetk -O $dep_distfiles/keys/agb.cetk-n3ds;
+		wget $url_o3ds_agb_cetk -O $dep_distfiles/keys/agb.cetk-o3ds;
+		wget $url_n3ds_twl_cetk -O $dep_distfiles/keys/twl.cetk-n3ds;
+		wget $url_o3ds_twl_cetk -O $dep_distfiles/keys/twl.cetk-o3ds;
+		
+		#fetch seeddb.bin and freeShop.cia
+		mkdir -p $dep_distfiles/seeddb; mkdir -p $dep_distfiles/freeShop;
+                wget $url_seeddb -O $dep_distfiles/seeddb/seeddb.bin;
+		wget $url_freeshop; wget $url_enctitlekeys -O $dep_distfiles/freeShop/encTitleKeys.bin;
 
 		#fetch retroarch
 		mkdir -p $dep_distfiles/Retroarch; cd $dep_distfiles/Retroarch;
 		wget $url_retroarch;
 
-		#fetch seedbin.bin
-		mkdir -p $dep_distfiles/seeddb; cd $dep_distfiles/seeddb;
-		wget $url_seeddb;
-		mv $dep_distfiles/seeddb/seeddb $dep_distfiles/seeddb/seeddb.bin;
-
-		#fetch freeShop
-		mkdir -p $dep_distfiles/freeShop; cd $dep_distfiles/freeShop;
-		wget $url_freeshop; wget $url_enctitlekeys;
-		mv $dep_distfiles/freeShop/downloadenc $dep_distfiles/freeShop/encTitleKeys.bin;
 		echo "";
 		echo "Source files updated!";
 		;;
