@@ -51,7 +51,7 @@ dep_corbenik=$dep_dependencies/corbenik;
 dep_locale=$dep_dependencies/corbenik/locale;
 dep_slot0x11Key96=$dep_dependencies/slotkeybin/slot0x11Key96.bin
 dep_a9lh=$dep_dependencies/a9lh/delebile;
-dep_decrypt9=$dep_dependencies/decrypt9;
+dep_files9=$dep_dependencies/files9;
 dep_cia=$dep_dependencies/cia/apps;
 dep_misc=$dep_dependencies/misc;
 dep_nand=$dep_dependencies/nand;
@@ -334,7 +334,7 @@ case $choice in
 	make;
 	mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_chain/Decrypt9-$(date +%Y%m%d).bin;
 	mv $dir_build/Decrypt9WIP/resources/d9logo.bin $dir_files9/;
-	cp -rR $dep_decrypt9/* $dir_files9/;
+	cp -rR $dep_files9/* $dir_files9/;
 	mv $dir_build/seeddb/seeddb.bin $dir_files9/;
 
 	#EmuNAND9
@@ -397,7 +397,7 @@ case $choice in
 	rm -rfv corbenik/chain/ARM9LoaderHax-o3ds.bin;
 	rm -v corbenik/firmware/*-o3ds;
 	rm -v corbenik/keys/*-o3ds;
-	rm -v Decrypt9/fbi-o3ds_usa-v11.0.0.app;
+	rm -v files9/fbi-o3ds_usa-v11.0.0.app;
 	mv -v corbenik/firmware/native-n3ds corbenik/firmware/native;
 	mv -v corbenik/firmware/agb-n3ds corbenik/firmware/agb;
 	mv -v corbenik/firmware/twl-n3ds corbenik/firmware/twl;
@@ -415,7 +415,7 @@ case $choice in
 	rm -rf corbenik/chain/ARM9LoaderHax-n3ds.bin;
 	rm -v corbenik/firmware/*-n3ds;
 	rm -v corbenik/keys/*-n3ds;
-	rm -v Decrypt9/fbi-n3ds_jpn-v11.0.0.app;
+	rm -v files9/fbi-n3ds_jpn-v11.0.0.app;
 	mv -v corbenik/firmware/native-o3ds corbenik/firmware/native;
 	mv -v corbenik/firmware/agb-o3ds corbenik/firmware/agb;
 	mv -v corbenik/firmware/twl-o3ds corbenik/firmware/twl;
