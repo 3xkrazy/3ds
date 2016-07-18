@@ -302,7 +302,6 @@ case $choice in
 	mv $dir_build/firmware $dir_corbenik/;
 	mv $dir_build/keys $dir_corbenik/;
 	cp $dep_slot0x11Key96 $dir_corbenik/keys/11.key;
-	cp $dep_corbenik/keys/*.key* $dir_corbenik/keys/;
 	cp $dep_corbenik/bits/top.bin $dir_corbenik/bits/;
 	cp -rR $dep_locale $dir_corbenik/;
 	mkdir -p $dir_chain;
@@ -396,14 +395,10 @@ case $choice in
 	rm -rfv 3ds/*-o3ds;
 	rm -rfv corbenik/chain/ARM9LoaderHax-o3ds.bin;
 	rm -v corbenik/firmware/*-o3ds;
-	rm -v corbenik/keys/*-o3ds;
 	rm -v files9/fbi-o3ds_usa-v11.0.0.app;
 	mv -v corbenik/firmware/native-n3ds corbenik/firmware/native;
 	mv -v corbenik/firmware/agb-n3ds corbenik/firmware/agb;
 	mv -v corbenik/firmware/twl-n3ds corbenik/firmware/twl;
-	mv -v corbenik/keys/native.key-n3ds corbenik/keys/native.key;
-	mv -v corbenik/keys/agb.key-n3ds corbenik/keys/agb.key;
-	mv -v corbenik/keys/twl.key-n3ds corbenik/keys/twl.key;
 	mv -v corbenik/keys/native.cetk-n3ds corbenik/keys/native.cetk;
 	mv -v corbenik/keys/agb.cetk-n3ds corbenik/keys/agb.cetk;
 	mv -v corbenik/keys/twl.cetk-n3ds corbenik/keys/twl.cetk;
@@ -414,14 +409,11 @@ case $choice in
 	rm -rf 3ds/*-n3ds;
 	rm -rf corbenik/chain/ARM9LoaderHax-n3ds.bin;
 	rm -v corbenik/firmware/*-n3ds;
-	rm -v corbenik/keys/*-n3ds;
 	rm -v files9/fbi-n3ds_jpn-v11.0.0.app;
+	rm -v files9/fbi-n3ds_usa-v11.0.0.app;
 	mv -v corbenik/firmware/native-o3ds corbenik/firmware/native;
 	mv -v corbenik/firmware/agb-o3ds corbenik/firmware/agb;
 	mv -v corbenik/firmware/twl-o3ds corbenik/firmware/twl;
-	mv -v corbenik/keys/native.key-o3ds corbenik/keys/native.key;
-	mv -v corbenik/keys/agb.key-o3ds corbenik/keys/agb.key;
-	mv -v corbenik/keys/twl.key-o3ds corbenik/keys/twl.key;
 	mv -v corbenik/keys/native.cetk-o3ds corbenik/keys/native.cetk;
 	mv -v corbenik/keys/agb.cetk-o3ds corbenik/keys/agb.cetk;
 	mv -v corbenik/keys/twl.cetk-o3ds corbenik/keys/twl.cetk;
