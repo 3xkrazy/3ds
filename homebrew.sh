@@ -83,9 +83,8 @@ dir_out=$dir_tmp/out;
 #3ds root
 dir_3ds=$dir_out/3ds;
 dir_cia=$dir_out/cia;
-dir_decrypt9=$dir_out/Decrypt9;
-dir_d9game=$dir_decrypt9/D9Game;
 dir_files9=$dir_out/files9;
+dir_d9game=$dir_files9/D9Game;
 
 #corbenik
 dir_corbenik=$dir_out/corbenik;
@@ -338,16 +337,16 @@ case $choice in
 	mv -v $dir_3ds/arm9loaderhax-o3ds/arm9loaderhax.bin $dir_chain/ARM9LoaderHax-o3ds.bin;
 
 	#Decrypt9WIP
-	cd $dir_build/Decrypt9WIP; mkdir -p $dir_d9game $dir_decrypt9;
+	cd $dir_build/Decrypt9WIP; mkdir -p $dir_files9 $dir_d9game;
 	make clean;
 	make;
 	mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_chain/Decrypt9-$(date +%Y%m%d).bin;
-	mv $dir_build/Decrypt9WIP/resources/d9logo.bin $dir_decrypt9/;
-	cp -rR $dep_decrypt9/* $dir_decrypt9/;
-	mv $dir_build/seeddb/seeddb.bin $dir_decrypt9/;
+	mv $dir_build/Decrypt9WIP/resources/d9logo.bin $dir_files9/;
+	cp -rR $dep_decrypt9/* $dir_files9/;
+	mv $dir_build/seeddb/seeddb.bin $dir_files9/;
 
 	#EmuNAND9
-	cd $dir_build/EmuNAND9; mkdir -p $dir_files9;
+	cd $dir_build/EmuNAND9;
 	make clean;
 	make;
 	mv -v $dir_build/EmuNAND9/output/EmuNAND9.bin $dir_chain/EmuNAND9-$(date +%Y%m%d).bin;
