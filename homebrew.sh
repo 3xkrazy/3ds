@@ -404,6 +404,8 @@ case $choice in
 	mv -v corbenik/keys/agb.cetk-n3ds corbenik/keys/agb.cetk;
 	mv -v corbenik/keys/twl.cetk-n3ds corbenik/keys/twl.cetk;
 	mv -v 3ds/dspfirm.cdc-n3ds 3ds/dspfirm.cdc;
+	mv -v 3ds/hblauncherloader_otherapp_payload_NEW-11-0-0-33-USA.bin-n3ds 3ds/hblauncherloader_otherapp_payload_NEW-11-0-0-33-USA.bin;
+	mv -v 3ds/hblauncherloader_otherapp_payload_NEW-11-0-0-33-JPN.bin-n3ds 3ds/hblauncherloader_otherapp_payload_NEW-11-0-0-33-JPN.bin;
 	mv -v files9/fbi-usa-v11.0.0.app-n3ds files9/fbi-usa-v11.0.0.app;
 	mv -v files9/fbi-jpn-v11.0.0.app-n3ds files9/fbi-jpn-v11.0.0.app;
 	;;
@@ -421,6 +423,7 @@ case $choice in
 	mv -v corbenik/keys/agb.cetk-o3ds corbenik/keys/agb.cetk;
 	mv -v corbenik/keys/twl.cetk-o3ds corbenik/keys/twl.cetk;
 	mv -v 3ds/dspfirm.cdc-o3ds 3ds/dspfirm.cdc;
+	mv -v 3ds/hblauncherloader_otherapp_payload_OLD-11-0-0-33-USA.bin-o3ds 3ds/hblauncherloader_otherapp_payload_OLD-11-0-0-33-USA.bin;
 	mv -v files9/fbi-usa-v11.0.0.app-o3ds files9/fbi-usa-v11.0.0.app;
 	;;
 
