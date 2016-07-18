@@ -395,6 +395,7 @@ case $choice in
 	rm -rfv 3ds/*-o3ds;
 	rm -rfv corbenik/chain/ARM9LoaderHax-o3ds.bin;
 	rm -v corbenik/firmware/*-o3ds;
+	rm -v corbenik/keys/*-o3ds;
 	rm -v files9/fbi-o3ds_usa-v11.0.0.app;
 	mv -v corbenik/firmware/native-n3ds corbenik/firmware/native;
 	mv -v corbenik/firmware/agb-n3ds corbenik/firmware/agb;
@@ -409,6 +410,7 @@ case $choice in
 	rm -rf 3ds/*-n3ds;
 	rm -rf corbenik/chain/ARM9LoaderHax-n3ds.bin;
 	rm -v corbenik/firmware/*-n3ds;
+	rm -v corbenik/keys/*-n3ds;
 	rm -v files9/fbi-n3ds_jpn-v11.0.0.app;
 	rm -v files9/fbi-n3ds_usa-v11.0.0.app;
 	mv -v corbenik/firmware/native-o3ds corbenik/firmware/native;
