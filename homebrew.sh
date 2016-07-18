@@ -463,7 +463,7 @@ case $choice in
 	mkdir -p $dep_nand;
 	echo "";
 	echo "Set block device";
-	echo "example: /dev/sdc";
+	echo "	example: /dev/sdc";
 	echo "";
 	echo -n "block device: ";
 	read block_device;
