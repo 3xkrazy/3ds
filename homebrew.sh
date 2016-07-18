@@ -200,7 +200,7 @@ case $choice in
 		mkdir -p $dep_distfiles/seeddb;
                 wget $url_seeddb -O $dep_distfiles/seeddb/seeddb.bin;
 		mkdir -p $dep_distfiles/freeShop;
-		wget $url_freeshop; wget $url_enctitlekeys -O $dep_distfiles/freeShop/encTitleKeys.bin;
+		wget $url_freeshop -O $dep_distfiles/freeShop/freeShop-v$freeShop_version.cia; wget $url_enctitlekeys -O $dep_distfiles/freeShop/encTitleKeys.bin;
 		;;
 
 		T) #misc
@@ -256,7 +256,7 @@ case $choice in
 		#fetch seeddb.bin and freeShop.cia
 		mkdir -p $dep_distfiles/seeddb; mkdir -p $dep_distfiles/freeShop;
                 wget $url_seeddb -O $dep_distfiles/seeddb/seeddb.bin;
-		wget $url_freeshop; wget $url_enctitlekeys -O $dep_distfiles/freeShop/encTitleKeys.bin;
+		wget $url_freeshop -O $dep_distfiles/freeShop/freeShop-v$freeShop_version.cia; wget $url_enctitlekeys -O $dep_distfiles/freeShop/encTitleKeys.bin;
 
 		#fetch retroarch
 		mkdir -p $dep_distfiles/Retroarch; cd $dep_distfiles/Retroarch;
