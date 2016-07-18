@@ -396,7 +396,7 @@ case $choice in
 	rm -rfv corbenik/chain/ARM9LoaderHax-o3ds.bin;
 	rm -v corbenik/firmware/*-o3ds;
 	rm -v corbenik/keys/*-o3ds;
-	rm -v files9/fbi-o3ds_usa-v11.0.0.app;
+	rm -v files9/*-o3ds;
 	mv -v corbenik/firmware/native-n3ds corbenik/firmware/native;
 	mv -v corbenik/firmware/agb-n3ds corbenik/firmware/agb;
 	mv -v corbenik/firmware/twl-n3ds corbenik/firmware/twl;
@@ -404,6 +404,8 @@ case $choice in
 	mv -v corbenik/keys/agb.cetk-n3ds corbenik/keys/agb.cetk;
 	mv -v corbenik/keys/twl.cetk-n3ds corbenik/keys/twl.cetk;
 	mv -v 3ds/dspfirm.cdc-n3ds 3ds/dspfirm.cdc;
+	mv -v files9/fbi-usa-v11.0.0.app-n3ds files9/fbi-usa-v11.0.0.app;
+	mv -v files9/fbi-jpn-v11.0.0.app-n3ds files9/fbi-jpn-v11.0.0.app;
 	;;
 
 	O) #set SD files to o3ds
@@ -411,8 +413,7 @@ case $choice in
 	rm -rf corbenik/chain/ARM9LoaderHax-n3ds.bin;
 	rm -v corbenik/firmware/*-n3ds;
 	rm -v corbenik/keys/*-n3ds;
-	rm -v files9/fbi-n3ds_jpn-v11.0.0.app;
-	rm -v files9/fbi-n3ds_usa-v11.0.0.app;
+	rm -v files9/*-n3ds;
 	mv -v corbenik/firmware/native-o3ds corbenik/firmware/native;
 	mv -v corbenik/firmware/agb-o3ds corbenik/firmware/agb;
 	mv -v corbenik/firmware/twl-o3ds corbenik/firmware/twl;
@@ -420,6 +421,7 @@ case $choice in
 	mv -v corbenik/keys/agb.cetk-o3ds corbenik/keys/agb.cetk;
 	mv -v corbenik/keys/twl.cetk-o3ds corbenik/keys/twl.cetk;
 	mv -v 3ds/dspfirm.cdc-o3ds 3ds/dspfirm.cdc;
+	mv -v files9/fbi-usa-v11.0.0.app-o3ds files9/fbi-usa-v11.0.0.app;
 	;;
 
 	F) #backup filer
