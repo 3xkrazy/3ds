@@ -84,8 +84,8 @@ dir_out=$dir_tmp/out;
 dir_3ds=$dir_out/3ds;
 dir_cia=$dir_out/cia;
 dir_decrypt9=$dir_out/Decrypt9;
-dir_d9game=$dir_out/D9Game;
-dir_emunand9=$dir_out/EmuNAND9;
+dir_d9game=$dir_decrypt9/D9Game;
+dir_files9=$dir_out/files9;
 
 #corbenik
 dir_corbenik=$dir_out/corbenik;
@@ -347,7 +347,7 @@ case $choice in
 	mv $dir_build/seeddb/seeddb.bin $dir_decrypt9/;
 
 	#EmuNAND9
-	cd $dir_build/EmuNAND9; mkdir -p $dir_emunand9;
+	cd $dir_build/EmuNAND9; mkdir -p $dir_files9;
 	make clean;
 	make;
 	mv -v $dir_build/EmuNAND9/output/EmuNAND9.bin $dir_chain/EmuNAND9-$(date +%Y%m%d).bin;
