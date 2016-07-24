@@ -48,7 +48,7 @@ dep_distfiles=~/Documents/3ds/distfiles;
 
 #cfw stuff
 dep_corbenik=$dep_dependencies/corbenik;
-dep_locale=$dep_dependencies/corbenik/locale;
+dep_locale=$dep_dependencies/corbenik/share/locale/emu;
 dep_slot0x11Key96=$dep_dependencies/slotkeybin/slot0x11Key96.bin
 dep_a9lh=$dep_dependencies/a9lh/delebile;
 dep_files9=$dep_dependencies/files9;
@@ -88,8 +88,8 @@ dir_d9game=$dir_files9/D9Game;
 
 #corbenik
 dir_corbenik=$dir_out/corbenik;
-dir_chain=$dir_corbenik/chain;
-dir_locale=$dir_corbenik/locale;
+dir_boot=$dir_corbenik/boot;
+dir_locale=$dir_corbenik/share/locale/emu;
 
 #MAIN SCRIPT
 
@@ -294,17 +294,17 @@ case $choice in
 
 	#corbenik
 	cd $dir_build/corbenik;
-	make clean;
-	make full;
-	rm -rf $dir_build/corbenik/out/corbenik/locale;
+	./autogen.sh;
+	./configure --host=arm-none-eabi;
+	make;
 	mv $dir_build/corbenik/out/corbenik $dir_out;
 	mv $dir_build/corbenik/out/arm9loaderhax.bin $dir_out;
-	mv $dir_build/firmware $dir_corbenik/;
-	mv $dir_build/keys $dir_corbenik/;
-	cp $dep_slot0x11Key96 $dir_corbenik/keys/11.key;
-	cp $dep_corbenik/bits/top.bin $dir_corbenik/bits/;
-	cp -rR $dep_locale $dir_corbenik/;
-	mkdir -p $dir_chain;
+	mv $dir_build/firmware/* $dir_corbenik/lib/firmware/;
+	mv $dir_build/keys/* $dir_corbenik/share/keys/;
+	cp $dep_slot0x11Key96 $dir_corbenik/share/keys/11.key;
+	cp $dep_corbenik/share/top.bin $dir_corbenik/share/;
+	cp -rR $dep_locale/* $dir_locale/;
+	mkdir -p $dir_boot;
 
 	#ARM9LoaderHax-n3ds
 	cd $dir_build/arm9loaderhax;
@@ -314,7 +314,7 @@ case $choice in
 	mv $dir_build/arm9loaderhax/data_input/otp.bin-n3ds $dir_build/arm9loaderhax/data_input/otp.bin;
 	make;
 	mv -v $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-n3ds;
-	mv -v $dir_3ds/arm9loaderhax-n3ds/arm9loaderhax.bin $dir_chain/ARM9LoaderHax-n3ds.bin;
+	mv -v $dir_3ds/arm9loaderhax-n3ds/arm9loaderhax.bin $dir_boot/ARM9LoaderHax-n3ds.bin;
 	rm -rf $dir_build/arm9loaderhax; cp -rR $dep_distfiles/arm9loaderhax $dir_build/;
 
 	#ARM9LoaderHax-o3ds
@@ -325,13 +325,13 @@ case $choice in
 	mv $dir_build/arm9loaderhax/data_input/otp.bin-o3ds $dir_build/arm9loaderhax/data_input/otp.bin;
 	make;
 	mv -v $dir_build/arm9loaderhax/data_output $dir_3ds/arm9loaderhax-o3ds;
-	mv -v $dir_3ds/arm9loaderhax-o3ds/arm9loaderhax.bin $dir_chain/ARM9LoaderHax-o3ds.bin;
+	mv -v $dir_3ds/arm9loaderhax-o3ds/arm9loaderhax.bin $dir_boot/ARM9LoaderHax-o3ds.bin;
 
 	#Decrypt9WIP
 	cd $dir_build/Decrypt9WIP; mkdir -p $dir_files9 $dir_d9game;
 	make clean;
 	make;
-	mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_chain/Decrypt9-$(date +%Y%m%d).bin;
+	mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_boot/Decrypt9-$(date +%Y%m%d).bin;
 	mv $dir_build/Decrypt9WIP/resources/d9logo.bin $dir_files9/;
 	cp -rR $dep_files9/* $dir_files9/;
 	mv $dir_build/seeddb/seeddb.bin $dir_files9/;
@@ -340,13 +340,13 @@ case $choice in
 	cd $dir_build/EmuNAND9;
 	make clean;
 	make;
-	mv -v $dir_build/EmuNAND9/output/EmuNAND9.bin $dir_chain/EmuNAND9-$(date +%Y%m%d).bin;
+	mv -v $dir_build/EmuNAND9/output/EmuNAND9.bin $dir_boot/EmuNAND9-$(date +%Y%m%d).bin;
 
 	#GodMode9
 	cd $dir_build/GodMode9;
 	make clean;
 	make;
-	mv -v $dir_build/GodMode9/output/GodMode9.bin $dir_chain/GodMode9-$(date +%Y%m%d).bin;
+	mv -v $dir_build/GodMode9/output/GodMode9.bin $dir_boot/GodMode9-$(date +%Y%m%d).bin;
 
 	#bannertool
 	cd $dir_build/bannertool;
@@ -393,7 +393,7 @@ case $choice in
 
 	N) #set SD files to n3ds
 	rm -rfv 3ds/*-o3ds;
-	rm -rfv corbenik/chain/ARM9LoaderHax-o3ds.bin;
+	rm -rfv corbenik/boot/ARM9LoaderHax-o3ds.bin;
 	rm -v corbenik/firmware/*-o3ds;
 	rm -v corbenik/keys/*-o3ds;
 	rm -v files9/*-o3ds;
@@ -412,7 +412,7 @@ case $choice in
 
 	O) #set SD files to o3ds
 	rm -rf 3ds/*-n3ds;
-	rm -rf corbenik/chain/ARM9LoaderHax-n3ds.bin;
+	rm -rf corbenik/boot/ARM9LoaderHax-n3ds.bin;
 	rm -v corbenik/firmware/*-n3ds;
 	rm -v corbenik/keys/*-n3ds;
 	rm -v files9/*-n3ds;
