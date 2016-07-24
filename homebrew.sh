@@ -394,15 +394,15 @@ case $choice in
 	N) #set SD files to n3ds
 	rm -rfv 3ds/*-o3ds;
 	rm -rfv corbenik/boot/ARM9LoaderHax-o3ds.bin;
-	rm -v corbenik/firmware/*-o3ds;
-	rm -v corbenik/keys/*-o3ds;
+	rm -v corbenik/lib/firmware/*-o3ds;
+	rm -v corbenik/share/keys/*-o3ds;
 	rm -v files9/*-o3ds;
-	mv -v corbenik/firmware/native-n3ds corbenik/firmware/native;
-	mv -v corbenik/firmware/agb-n3ds corbenik/firmware/agb;
-	mv -v corbenik/firmware/twl-n3ds corbenik/firmware/twl;
-	mv -v corbenik/keys/native.cetk-n3ds corbenik/keys/native.cetk;
-	mv -v corbenik/keys/agb.cetk-n3ds corbenik/keys/agb.cetk;
-	mv -v corbenik/keys/twl.cetk-n3ds corbenik/keys/twl.cetk;
+	mv -v corbenik/lib/firmware/native-n3ds corbenik/lib/firmware/native;
+	mv -v corbenik/lib/firmware/agb-n3ds corbenik/lib/firmware/agb;
+	mv -v corbenik/lib/firmware/twl-n3ds corbenik/lib/firmware/twl;
+	mv -v corbenik/share/keys/native.cetk-n3ds corbenik/share/keys/native.cetk;
+	mv -v corbenik/share/keys/agb.cetk-n3ds corbenik/share/keys/agb.cetk;
+	mv -v corbenik/share/keys/twl.cetk-n3ds corbenik/share/keys/twl.cetk;
 	mv -v 3ds/dspfirm.cdc-n3ds 3ds/dspfirm.cdc;
 	mv -v 3ds/hblauncherloader_otherapp_payload_NEW-11-0-0-33-USA.bin-n3ds 3ds/hblauncherloader_otherapp_payload_NEW-11-0-0-33-USA.bin;
 	mv -v 3ds/hblauncherloader_otherapp_payload_NEW-11-0-0-33-JPN.bin-n3ds 3ds/hblauncherloader_otherapp_payload_NEW-11-0-0-33-JPN.bin;
@@ -413,15 +413,15 @@ case $choice in
 	O) #set SD files to o3ds
 	rm -rf 3ds/*-n3ds;
 	rm -rf corbenik/boot/ARM9LoaderHax-n3ds.bin;
-	rm -v corbenik/firmware/*-n3ds;
-	rm -v corbenik/keys/*-n3ds;
+	rm -v corbenik/lib/firmware/*-n3ds;
+	rm -v corbenik/share/keys/*-n3ds;
 	rm -v files9/*-n3ds;
-	mv -v corbenik/firmware/native-o3ds corbenik/firmware/native;
-	mv -v corbenik/firmware/agb-o3ds corbenik/firmware/agb;
-	mv -v corbenik/firmware/twl-o3ds corbenik/firmware/twl;
-	mv -v corbenik/keys/native.cetk-o3ds corbenik/keys/native.cetk;
-	mv -v corbenik/keys/agb.cetk-o3ds corbenik/keys/agb.cetk;
-	mv -v corbenik/keys/twl.cetk-o3ds corbenik/keys/twl.cetk;
+	mv -v corbenik/lib/firmware/native-o3ds corbenik/lib/firmware/native;
+	mv -v corbenik/lib/firmware/agb-o3ds corbenik/lib/firmware/agb;
+	mv -v corbenik/lib/firmware/twl-o3ds corbenik/lib/firmware/twl;
+	mv -v corbenik/share/keys/native.cetk-o3ds corbenik/share/keys/native.cetk;
+	mv -v corbenik/share/keys/agb.cetk-o3ds corbenik/share/keys/agb.cetk;
+	mv -v corbenik/share/keys/twl.cetk-o3ds corbenik/share/keys/twl.cetk;
 	mv -v 3ds/dspfirm.cdc-o3ds 3ds/dspfirm.cdc;
 	mv -v 3ds/hblauncherloader_otherapp_payload_OLD-11-0-0-33-USA.bin-o3ds 3ds/hblauncherloader_otherapp_payload_OLD-11-0-0-33-USA.bin;
 	mv -v files9/fbi-usa-v11.0.0.app-o3ds files9/fbi-usa-v11.0.0.app;
