@@ -330,7 +330,7 @@ case $choice in
 	#Decrypt9WIP
 	cd $dir_build/Decrypt9WIP; mkdir -p $dir_files9 $dir_d9game;
 	make clean;
-	make;
+	make FONT=ORIG a9lh;
 	mv -v $dir_build/Decrypt9WIP/output/Decrypt9WIP.bin $dir_boot/Decrypt9-$(date +%Y%m%d).bin;
 	mv $dir_build/Decrypt9WIP/resources/d9logo.bin $dir_files9/;
 	cp -rR $dep_files9/* $dir_files9/;
@@ -345,7 +345,7 @@ case $choice in
 	#GodMode9
 	cd $dir_build/GodMode9;
 	make clean;
-	make;
+	make FONT=ORIG a9lh;
 	mv -v $dir_build/GodMode9/output/GodMode9.bin $dir_boot/GodMode9-$(date +%Y%m%d).bin;
 
 	#bannertool
