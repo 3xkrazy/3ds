@@ -301,7 +301,7 @@ case $choice in
 	mv $dir_build/corbenik/out/arm9loaderhax.bin $dir_out;
 	mv $dir_build/firmware/* $dir_corbenik/lib/firmware/;
 	mv $dir_build/keys/* $dir_corbenik/share/keys/;
-	cp $dep_slot0x11Key96 $dir_corbenik/share/keys/11.key;
+	cp $dep_slot0x11Key96 $dir_corbenik/share/keys/11key96.key;
 	cp $dep_corbenik/share/top.bin $dir_corbenik/share/;
 	cp -rR $dep_locale/* $dir_locale/;
 	mkdir -p $dir_boot;
