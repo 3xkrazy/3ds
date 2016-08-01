@@ -11,7 +11,7 @@ freeShop_version=1.2.2;
 url_freeshop=https://github.com/Cruel/freeShop/releases/download/$freeShop_version/freeShop-$freeShop_version.cia;
 
 #encTitleKeys
-url_enctitlekeys=https://3ds.titlekeys.com/downloadenc;
+url_enctitlekeys=;
 
 #seeddb
 url_seeddb=https://3ds.titlekeys.com/seeddb;
